@@ -1,0 +1,6 @@
+/* here app related custom css */
+.page-footer .page-footer-inner{ float:none; text-align: center; display: inherit;}
+.page-header.navbar .page-logo .logo-default {
+    max-width: 130px;
+    margin: 12px 0 0;
+}

@@ -1,0 +1,43 @@
+.button_style_preview{ display: inline-block; margin-left: 20px; }
+.button_style_preview .faicon{ margin-right: 20px; }
+.faicon{ font-size: 30px; }
+.faicon_flip {
+  transform: rotate(360deg) scaleX(-1);
+}
+.iconyes{ color: #7ed026; }
+.iconno{ color: #e96e48; }
+table td.nopadding{ padding: 0; }
+table.mulit_desti_row_section { margin-bottom: 20px; }
+.multi_destination table tr td{ border-top: 1px solid #dadada; padding-top: 10px; }
+.multi_destination table td{ padding: 0; }
+.mr_add_remove span{ cursor: pointer; }
+.btn-multi-desti-add span{color: #7ed026;}
+.btn-multi-desti-remove span{color: #e96e48;}
+td.mtd_icon_preview { text-align: center; }
+span.faicon_preview { font-size: 24px; }
+.photo_upload_area{ display: none; position: relative; }
+.btn-upload-photo { position: absolute; top: 0; right: 0; color: #FFFFFF; background: #222222; padding: 4px 5px; text-decoration: none; }
+.photo_upload_area label{ padding: 2px 10px; background: #7ed026;  display: table; color: #ffffff; margin-top: 5px; }
+.photo_upload_area input[type="file"] { display: none;}
+.dashicons_reviews{ margin: 4px 10px 0 0; }
+#srm_review_chart_wrap{ float:left; width: 100%; margin: 20px 0; }
+.srm_review_rating, .srm_review_chart{ width: auto; float: left;}
+.srm_review_chart{ margin-left: 10%; margin-top: -35px; }
+.srm_review_rating .srm_admin_label{ font-size: 130%; line-height: 1.5em; width: 100px; display: inline-block;}
+.srm_review_rating .srm_number{ font-size: 130%; line-height: 1.5em; font-weight: bold;}
+#rating_status{ background: #FFFFFF; border: 2px solid #000000; display: inline-block; font-size: 130%; padding: 10px 20px; margin-bottom: 20px; font-weight: bold;}
+span.review_status{ font-weight: bold;}
+.review_status.poor{ color: #e96e48; }
+.review_status.average{ color: #ffc200; }
+.review_status.good{ color: #00aeef; }
+.review_status.excellent{ color: #57b219; }
+.ask_checkbox_lebel{ margin-right: 20px; }
+.alert_message{ display: none; color: #dc3232; }
+
+
+@media screen and (max-width: 981px) {
+  .srm_review_rating{ min-height: 200px; }
+}
+@media screen and (max-width: 550px) {
+  .srm_review_rating { min-height: 200px; margin: 0 auto; float: none; width: 200px; }
+}
