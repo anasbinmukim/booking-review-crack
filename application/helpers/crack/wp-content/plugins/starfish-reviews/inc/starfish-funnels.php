@@ -707,7 +707,7 @@ function get_total_funnel(){
 
 add_action( 'admin_init', 'srm_disable_all_premium_features' );
 function srm_disable_all_premium_features(){
-	if ( get_option( 'starfish_reviews_activated' ) !== 'Activated' ){
+	if (! starfish_fs()->can_use_premium_code() ){
 			srm_force_draft_all_generated_funnels();
 	}
 }
