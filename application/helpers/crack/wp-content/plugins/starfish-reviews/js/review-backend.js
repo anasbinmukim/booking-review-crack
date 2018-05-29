@@ -54,10 +54,10 @@ jQuery(document).ready(function($) {
   $('.desti_icon').live('change', function() {
      var option_val = $(this).val();
      if(option_val == 'Google'){
-       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_google fab fa-google-plus-square"></span>');
+       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_google fab fa-google-plus-g"></span>');
      }
      if(option_val == 'Facebook'){
-       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_facebook fab fa-facebook-square"></span>');
+       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_facebook fab fa-facebook-f"></span>');
      }
      if(option_val == 'Yelp'){
        $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_yelp fab fa-yelp"></span>');
@@ -72,7 +72,7 @@ jQuery(document).ready(function($) {
        $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_audible fab fa-audible"></span>');
      }
      if(option_val == 'iTunes'){
-       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_itunes fab fa-itunes"></span>');
+       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_itunes fab fa-itunes-note"></span>');
      }
      if(option_val == 'AppleAppStore'){
        $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_apple fab fa-apple"></span>');

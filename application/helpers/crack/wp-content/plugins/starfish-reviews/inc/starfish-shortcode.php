@@ -19,6 +19,7 @@ if(!get_post_status( $funnel_id )){
 <form class="srm_form" id="srm_review_form" action="" method="post">
 <?php
 $srm_yn_question = esc_html(get_post_meta( $funnel_id, '_srm_yn_question', true ));
+$srm_no_destination = esc_html(get_post_meta( $funnel_id, '_srm_no_destination', true ));
 $srm_review_destination_url = esc_url(get_post_meta( $funnel_id, '_srm_review_destination', true ));
 $srm_review_auto_redirect_seconds = intval(get_post_meta( $funnel_id, '_srm_review_auto_redirect', true ));
 $replace_site_name = get_bloginfo( 'name' );
@@ -56,6 +57,47 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 			<div class="radio_item radio_item_yes"><input type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_yes" value="Yes"> <label for="srm_review_yes"><?php echo $lebel_yes; ?></label></div>
 			<div class="radio_item radio_item_no"><input type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_no" value="No"> <label for="srm_review_no"><?php echo $lebel_no; ?></label></div>
 	</div>
+	<?php
+	if($srm_no_destination == 'multiple'){
+		$srm_multi_desti = get_post_meta( $funnel_id, '_srm_multi_desti', true );
+		$output_icon_style = '';
+		?>
+		<div class="review-multiple-destination">
+			<?php if(isset($srm_multi_desti) && is_array($srm_multi_desti) && (count($srm_multi_desti) > 0)){ ?>
+				<ul class="multi-desti-buttons">
+				<?php foreach ($srm_multi_desti as $key => $multi_desti) { ?>
+						<?php
+							$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
+							$icon_photo_id = intval( $multi_desti['icon_photo_id'] );
+							$srm_desti_color = esc_html( $multi_desti['srm_desti_color'] );
+							$srm_desti_bg_color = esc_html( $multi_desti['srm_desti_bg_color'] );
+							$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
+							$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
+
+							$icon_class = '';
+							if($srm_destination_icon != ''){
+								$icon_class = sanitize_title_with_dashes($srm_destination_icon);
+							}
+							if($srm_desti_color != ''){
+								$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{color: '.$srm_desti_color.'}';
+							}
+							if($srm_desti_bg_color != ''){
+								$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{background: '.$srm_desti_bg_color.'}';
+							}
+						?>
+						<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="multi-desti-submit" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
+						<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?>
+						</a></li>
+					<?php } ?>
+				</ul>
+				<?php
+				if($output_icon_style != ''){
+					echo '<style>'.$output_icon_style.'</style>';
+				}
+				?>
+				<?php } ?>
+		</div>
+	<?php } ?>
 	<div class="review_yes_section review_yes_no_section" id="review_yes_section">
 		<?php echo get_post_meta( $funnel_id, '_srm_yes_review_prompt', true ); ?>
 		<input type="hidden" name="reveiw_destination_url" id="reveiw_destination_url" value="<?php echo $srm_review_destination_url; ?>">

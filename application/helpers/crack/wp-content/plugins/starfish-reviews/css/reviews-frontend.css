@@ -27,6 +27,26 @@
 .srm-public-review-button{ display: none; margin-top: 30px; }
 .srm-public-review-button a{ color: #fff; display: inline-block; }
 .srm-public-review-button a:hover{ color: #fff; }
+.multi-desti-buttons{ display: inline; }
+.multi-desti-buttons li{ display: inline; }
+.multi-desti-buttons li a{ padding: 10px; margin: 5px; display: inline-block; background: #dadada; color: #666; min-width: 70px; border-radius: 5px; }
+.multi-desti-buttons li a .faicon_preview{ font-size: 40px; }
+.multi-desti-buttons li a img{ max-width: 50px; vertical-align: bottom; }
+.multi-desti-buttons li a:hover{ color: #fff; }
+.multi-desti-buttons .google a:hover{ background-color: #dd4b39; }
+.multi-desti-buttons .facebook a:hover{ background-color: #3b5998; }
+.multi-desti-buttons .yelp a:hover{ background-color: #af0606; }
+.multi-desti-buttons .tripadvisor a:hover{ background-color: #00af87; }
+.multi-desti-buttons .amazon a:hover{ background-color: #ff9900; }
+.multi-desti-buttons .audible a:hover{ background-color: #f7991c; }
+.multi-desti-buttons .itunes a:hover{ background-color: #333333; }
+.multi-desti-buttons .appleappstore a:hover{ background-color: #34C5F9; }
+.multi-desti-buttons .googleplay a:hover{ background-color: #fbbc05; }
+.multi-desti-buttons .foursquare a:hover{ background-color: #f94877; }
+.multi-desti-buttons .wordpress a:hover{ background-color: #21759b; }
+.multi-desti-buttons .etsy a:hover{ background-color: #d5641c; }
+.multi-desti-buttons .youtube a:hover{ background-color: #ff0000; }
+.multi-desti-buttons .uploadimage a, .multi-desti-buttons .uploadimage a:hover{ background: none; }
 @media screen and (max-width: 550px) {
   .srm-review-form .srm_form .yes-no-checked .faicon{ font-size: 80px;}
 }

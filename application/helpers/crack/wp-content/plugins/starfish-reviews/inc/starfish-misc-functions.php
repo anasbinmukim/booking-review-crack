@@ -22,7 +22,7 @@ function starfish_get_destination_icon($icon_type, $photo_id = '', $display = 'a
     $icon_html = '<span class="faicon_preview icon_audible fab fa-audible"></span>';
   }
   if($icon_type == 'iTunes'){
-    $icon_html = '<span class="faicon_preview icon_itunes fab fa-itunes"></span>';
+    $icon_html = '<span class="faicon_preview icon_itunes fab fa-itunes-note"></span>';
   }
   if($icon_type == 'AppleAppStore'){
     $icon_html = '<span class="faicon_preview icon_apple fab fa-apple"></span>';
@@ -48,9 +48,66 @@ function starfish_get_destination_icon($icon_type, $photo_id = '', $display = 'a
         if(isset($img_thumb[0])){
           $icon_html ='<img width="20" src="'.esc_url($img_thumb[0]).'" alt="" />';
         }
+      }else{
+        $img_thumb = wp_get_attachment_image_src( $photo_id, 'thumbnail' );
+        if(isset($img_thumb[0])){
+          $icon_html ='<img width="100" src="'.esc_url($img_thumb[0]).'" alt="" />';
+        }
       }
   }
 
   return $icon_html;
+
+}
+
+
+function starfish_get_icon_color($icon_type){
+  $icon_color = '';
+
+  switch ($icon_type) {
+    case "Google":
+        $icon_color = '#dd4b39';
+        break;
+    case "Facebook":
+        $icon_color = '#3b5998';
+        break;
+    case "Yelp":
+        $icon_color = '#af0606';
+        break;
+    case "Tripadvisor":
+        $icon_color = '#00af87';
+        break;
+    case "Amazon":
+        $icon_color = '#ff9900';
+        break;
+    case "Audible":
+        $icon_color = '#f7991c';
+        break;
+    case "iTunes":
+        $icon_color = '#333333';
+        break;
+    case "AppleAppStore":
+        $icon_color = '#34C5F9';
+        break;
+    case "GooglePlay":
+        $icon_color = '#fbbc05';
+        break;
+    case "Foursquare":
+        $icon_color = '#f94877';
+        break;
+    case "WordPress":
+        $icon_color = '#21759b';
+        break;
+    case "Etsy":
+        $icon_color = '#d5641c';
+        break;
+    case "YouTube":
+        $icon_color = '#ff0000';
+        break;
+    default:
+        $icon_color = '#000';
+  }
+
+  return $icon_color;
 
 }

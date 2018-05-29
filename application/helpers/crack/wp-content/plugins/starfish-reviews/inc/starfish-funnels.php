@@ -201,7 +201,7 @@ function srm_yes_result_build_meta_box( $post ){
 				<tr>
 						<th><?php echo esc_html__( 'Icon', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Preview', 'starfish' ); ?></th>
-						<th><?php echo esc_html__( 'Icon Color', 'starfish' ); ?></th>
+						<th><?php echo esc_html__( 'Icon Color/Background', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Name', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Destination', 'starfish' ); ?></th>
 						<th></th>
@@ -213,6 +213,7 @@ function srm_yes_result_build_meta_box( $post ){
 								$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
 								$icon_photo_id = intval( $multi_desti['icon_photo_id'] );
 								$srm_desti_color = esc_html( $multi_desti['srm_desti_color'] );
+								$srm_desti_bg_color = esc_html( $multi_desti['srm_desti_bg_color'] );
 								$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
 								$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
 							?>
@@ -247,7 +248,10 @@ function srm_yes_result_build_meta_box( $post ){
 									</div>
 								</td>
 								<td class="mtd_icon_preview"><?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id); ?></td>
-								<td><input type="text" class="medium-text" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>"></td>
+								<td class="td-color-field">
+									 <input type="text" class="medium-text color-field" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
+									 <input type="text" class="medium-text color-field" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
+								</td>
 								<td><input type="text" class="medium-text" name="srm_desti_name[]" value="<?php echo $srm_desti_name; ?>" placeholder="<?php echo esc_html__( 'Name', 'starfish' ); ?>"></td>
 								<td><input type="text" class="medium-text" name="srm_desti_url[]" value="<?php echo $srm_desti_url; ?>" placeholder="<?php echo esc_html__( 'Review URL', 'starfish' ); ?>"></td>
 								<td class="mr_add_remove btn-multi-desti-remove btn-danger"><span class="fas fa-minus"></span></td>
@@ -258,6 +262,7 @@ function srm_yes_result_build_meta_box( $post ){
 					$srm_destination_icon = '';
 					$icon_photo_id = '';
 					$srm_desti_color = '';
+					$srm_desti_bg_color = '';
 					$srm_desti_name = '';
 					$srm_desti_url = '';
 				?>
@@ -292,7 +297,10 @@ function srm_yes_result_build_meta_box( $post ){
 						</div>
 					</td>
 					<td class="mtd_icon_preview"></td>
-					<td><input type="text" class="medium-text" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>"></td>
+					<td class="td-color-field">
+						 <input type="text" class="medium-text color-field" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
+						 <input type="text" class="medium-text color-field" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
+					</td>
 					<td><input type="text" class="medium-text" name="srm_desti_name[]" value="<?php echo $srm_desti_name; ?>" placeholder="<?php echo esc_html__( 'Name', 'starfish' ); ?>"></td>
 					<td><input type="text" class="medium-text" name="srm_desti_url[]" value="<?php echo $srm_desti_url; ?>" placeholder="<?php echo esc_html__( 'Review URL', 'starfish' ); ?>"></td>
 					<td class="mr_add_remove btn-multi-desti-add"><span class="fas fa-plus"></span></td>
@@ -517,6 +525,7 @@ function srm_funnel_yes_result_save_meta_box_data( $post_id ){
 			$desti_icon_arr = $_REQUEST['desti_icon'];
 			$icon_photo_id_arr = $_REQUEST['icon_photo_id'];
 			$srm_desti_color_arr = $_REQUEST['srm_desti_color'];
+			$srm_desti_bg_color_arr = $_REQUEST['srm_desti_bg_color'];
 			$srm_desti_name_arr = $_REQUEST['srm_desti_name'];
 			$srm_desti_url_arr = $_REQUEST['srm_desti_url'];
 			$multi_desti_icon_set = array();
@@ -527,6 +536,7 @@ function srm_funnel_yes_result_save_meta_box_data( $post_id ){
 								'desti_icon' => $value_icon,
 								'icon_photo_id' => (isset($icon_photo_id_arr[$key_icon]) ? intval($icon_photo_id_arr[$key_icon]) : ''),
 								'srm_desti_color' => (isset($srm_desti_color_arr[$key_icon]) ? esc_html($srm_desti_color_arr[$key_icon]) : ''),
+								'srm_desti_bg_color' => (isset($srm_desti_bg_color_arr[$key_icon]) ? esc_html($srm_desti_bg_color_arr[$key_icon]) : ''),
 								'srm_desti_name' => (isset($srm_desti_name_arr[$key_icon]) ? esc_html($srm_desti_name_arr[$key_icon]) : ''),
 								'srm_desti_url' => (isset($srm_desti_url_arr[$key_icon]) ? esc_url($srm_desti_url_arr[$key_icon]) : ''),
 							);
