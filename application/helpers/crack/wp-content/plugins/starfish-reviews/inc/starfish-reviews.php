@@ -121,6 +121,10 @@ function srm_starfish_review_show_order_column($name){
 			$srm_funnel_id = get_post_meta($post->ID, '_srm_funnel_id', true);
 			$srm_funnel_title = get_the_title($srm_funnel_id);
 			echo esc_html($srm_funnel_title);
+			if(get_post_meta($post->ID, '_srm_desti_name', true) != ''){
+					$desti_name = esc_html(get_post_meta($post->ID, '_srm_desti_name', true));
+					echo '<br />Destination: '.$desti_name;
+			}
 			break;
    default:
       break;

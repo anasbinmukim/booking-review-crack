@@ -18,8 +18,8 @@
 .srm-review-form #submit_review:hover{ background:#008000;}
 .srm-review-form .srm_form h2{font-size: 28px; margin-bottom: 24px;}
 .srm-review-form #review_yes_section h3 {font-size: 24px;padding: 20px 0;}
-.srm-review-form #review_yes_section a{ color:#e94d4d;}
-.srm-review-form #review_yes_section p{ padding-bottom:14px;}
+.srm-review-form #review_yes_section .yes-prompt-text a{ color:#e94d4d;}
+.srm-review-form #review_yes_section .yes-prompt-text p{ padding-bottom:14px;}
 .srm-powered-by{ font-size: 80%; text-align: center; margin-top: 30px; }
 .starfish_review_footer_section{ display: none; }
 .srm-review-form .alert_message{ display: none; color: #dc3232; width: 100%; }
@@ -27,6 +27,7 @@
 .srm-public-review-button{ display: none; margin-top: 30px; }
 .srm-public-review-button a{ color: #fff; display: inline-block; }
 .srm-public-review-button a:hover{ color: #fff; }
+.review-multiple-destination { margin: 20px 20px; }
 .multi-desti-buttons{ display: inline; }
 .multi-desti-buttons li{ display: inline; }
 .multi-desti-buttons li a{ padding: 10px; margin: 5px; display: inline-block; background: #dadada; color: #666; min-width: 70px; border-radius: 5px; }

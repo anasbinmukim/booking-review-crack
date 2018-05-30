@@ -57,49 +57,51 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 			<div class="radio_item radio_item_yes"><input type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_yes" value="Yes"> <label for="srm_review_yes"><?php echo $lebel_yes; ?></label></div>
 			<div class="radio_item radio_item_no"><input type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_no" value="No"> <label for="srm_review_no"><?php echo $lebel_no; ?></label></div>
 	</div>
-	<?php
-	if($srm_no_destination == 'multiple'){
-		$srm_multi_desti = get_post_meta( $funnel_id, '_srm_multi_desti', true );
-		$output_icon_style = '';
-		?>
-		<div class="review-multiple-destination">
-			<?php if(isset($srm_multi_desti) && is_array($srm_multi_desti) && (count($srm_multi_desti) > 0)){ ?>
-				<ul class="multi-desti-buttons">
-				<?php foreach ($srm_multi_desti as $key => $multi_desti) { ?>
-						<?php
-							$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
-							$icon_photo_id = intval( $multi_desti['icon_photo_id'] );
-							$srm_desti_color = esc_html( $multi_desti['srm_desti_color'] );
-							$srm_desti_bg_color = esc_html( $multi_desti['srm_desti_bg_color'] );
-							$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
-							$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
-
-							$icon_class = '';
-							if($srm_destination_icon != ''){
-								$icon_class = sanitize_title_with_dashes($srm_destination_icon);
-							}
-							if($srm_desti_color != ''){
-								$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{color: '.$srm_desti_color.'}';
-							}
-							if($srm_desti_bg_color != ''){
-								$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{background: '.$srm_desti_bg_color.'}';
-							}
-						?>
-						<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="multi-desti-submit" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
-						<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?>
-						</a></li>
-					<?php } ?>
-				</ul>
-				<?php
-				if($output_icon_style != ''){
-					echo '<style>'.$output_icon_style.'</style>';
-				}
-				?>
-				<?php } ?>
-		</div>
-	<?php } ?>
 	<div class="review_yes_section review_yes_no_section" id="review_yes_section">
-		<?php echo get_post_meta( $funnel_id, '_srm_yes_review_prompt', true ); ?>
+		<div class="yes-prompt-text">
+			<?php echo get_post_meta( $funnel_id, '_srm_yes_review_prompt', true ); ?>
+		</div>
+		<?php
+		if($srm_no_destination == 'multiple'){
+			$srm_multi_desti = get_post_meta( $funnel_id, '_srm_multi_desti', true );
+			$output_icon_style = '';
+			?>
+			<div class="review-multiple-destination">
+				<?php if(isset($srm_multi_desti) && is_array($srm_multi_desti) && (count($srm_multi_desti) > 0)){ ?>
+					<ul class="multi-desti-buttons">
+					<?php foreach ($srm_multi_desti as $key => $multi_desti) { ?>
+							<?php
+								$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
+								$icon_photo_id = intval( $multi_desti['icon_photo_id'] );
+								$srm_desti_color = esc_html( $multi_desti['srm_desti_color'] );
+								$srm_desti_bg_color = esc_html( $multi_desti['srm_desti_bg_color'] );
+								$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
+								$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
+
+								$icon_class = '';
+								if($srm_destination_icon != ''){
+									$icon_class = sanitize_title_with_dashes($srm_destination_icon);
+								}
+								if($srm_desti_color != ''){
+									$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{color: '.$srm_desti_color.'}';
+								}
+								if($srm_desti_bg_color != ''){
+									$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{background: '.$srm_desti_bg_color.'}';
+								}
+							?>
+							<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="multi-desti-submit" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
+							<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?>
+							</a></li>
+						<?php } ?>
+					</ul>
+					<?php
+					if($output_icon_style != ''){
+						echo '<style>'.$output_icon_style.'</style>';
+					}
+					?>
+					<?php } ?>
+			</div>
+		<?php } ?>
 		<input type="hidden" name="reveiw_destination_url" id="reveiw_destination_url" value="<?php echo $srm_review_destination_url; ?>">
 	</div>
 	<div class="review_no_section review_yes_no_section" id="review_no_section">
@@ -170,7 +172,14 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 					jQuery( "#yes-no-checked" ).hide( "slow");
 					jQuery( ".question_heading" ).hide( "slow");
 					<?php
-						if($srm_review_auto_redirect_seconds > 0){
+						if($srm_no_destination == 'multiple'){
+							?>
+							jQuery( "#submit_review" ).hide();
+							<?php
+						}
+					?>
+					<?php
+						if(($srm_review_auto_redirect_seconds > 0) && ($srm_no_destination == 'single')){
 							$auto_forward_seconds = $srm_review_auto_redirect_seconds * 1000;
 							?>
 							jQuery( "#submit_review" ).hide();
@@ -275,6 +284,58 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
           });
       });
   });
+
+	//Process multiple destination
+	jQuery(document).ready(function($) {
+			jQuery('.multi-desti-submit').click(function() {
+					var desti_url = jQuery(this).data('desti_url');
+					var yes_no_flag = jQuery(".yes-no-checked input[type='radio']:checked").val();
+					jQuery('.review_under_processing').show('slow');
+					var reveiw_destination_url = jQuery(this).data('desti_url');
+					var desti_name = jQuery(this).data('desti_name');
+					var reveiw_yes_thank_you = jQuery('#reveiw_yes_thank_you').val();
+					var reveiw_no_thank_you = jQuery('#reveiw_no_thank_you').val();
+					var reveiw_msg_thank_you = '';
+					if(yes_no_flag !== 'Yes'){
+							reveiw_msg_thank_you = reveiw_no_thank_you;
+					}
+					var dataContainer = {
+							security: '<?php echo $srm_reveiw_nonce; ?>',
+							yes_no_flag: yes_no_flag,
+							funnel_id: jQuery('#funnel_id').val(),
+							tracking_id: jQuery('#tracking_id').val(),
+							review_text: '',
+							reviewer_name: '',
+							reviewer_email: '',
+							reviewer_phone: '',
+							reveiw_destination_url: reveiw_destination_url,
+							desti_name: desti_name,
+							action: 'send-starfish-review-data'
+					};
+					jQuery.ajax({
+							action: "send-starfish-review-data",
+							type: "POST",
+							dataType: "json",
+							url: srm_ajaxurl,
+							data: dataContainer,
+							success: function(data){
+								//alert(data.msg);
+								if(data.msg == 'Complete'){
+									jQuery('.review_under_processing').html('<div class="success">'+reveiw_msg_thank_you+'</div>');
+									jQuery('.srm-public-review-button').show();
+									//jQuery('.review_under_processing').delay(3000).fadeOut('slow');
+									jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
+									if(yes_no_flag === 'Yes'){
+										window.location = reveiw_destination_url;
+									}
+								}else{
+									jQuery('.review_under_processing').html('<span class="error">Sending error</span>');
+									jQuery('.review_under_processing').delay(3000).fadeOut('slow');
+								}
+							}
+					});
+			});
+	});
 </script>
 <?php if(get_option('srm_branding', true) != 'hide'){ ?>
 <?php

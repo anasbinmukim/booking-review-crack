@@ -14,6 +14,8 @@ function srm_send_starfish_review_data() {
 	$srm_reviewer_email = sanitize_text_field($_POST['reviewer_email']);
 	$srm_reviewer_phone = sanitize_text_field($_POST['reviewer_phone']);
 
+	$srm_desti_name = sanitize_text_field($_POST['desti_name']);
+
 	$current_local_time = date( 'j M Y g:i a', current_time( 'timestamp', 0 ) );
 
 	if (!check_ajax_referer( 'srm_reveiw_nonce', 'security' )) {
@@ -32,6 +34,10 @@ function srm_send_starfish_review_data() {
 						add_post_meta($review_id, '_srm_funnel_id', $funnel_id);
 						add_post_meta($review_id, '_srm_tracking_id', $tracking_id);
 						add_post_meta($review_id, '_srm_destination_url', $reveiw_destination_url);
+
+						if($srm_desti_name != ''){
+							add_post_meta($review_id, '_srm_desti_name', $srm_desti_name);
+						}
 
 						if($srm_reviewer_name != ''){
 							add_post_meta($review_id, '_srm_reviewer_name', $srm_reviewer_name);
