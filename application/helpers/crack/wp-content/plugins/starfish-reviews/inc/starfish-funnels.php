@@ -236,7 +236,7 @@ function srm_yes_result_build_meta_box( $post ){
 											<option value="YouTube" <?php selected( $srm_destination_icon, 'YouTube' ); ?> ><?php echo esc_html__( 'YouTube', 'starfish' ); ?></option>
 											<option value="Uploadimage" <?php selected( $srm_destination_icon, 'Uploadimage' ); ?> ><?php echo esc_html__( 'Upload image', 'starfish' ); ?></option>
 									</select>
-									<div class="photo_upload_area">
+									<div class="photo_upload_area" style="display:none;">
 										<label class="btn_icon_upload"> <?php echo esc_html__( 'Browse...', 'starfish' ); ?>
 											<input type="file" name="photoupload[]" class="photoupload"  accept=".png, .jpg, .jpeg, .gif">
 										</label>

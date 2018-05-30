@@ -22,10 +22,11 @@ if ( isset($_POST['srm_settings_nonce']) && (! isset( $_POST['srm_settings_nonce
        }else{
          update_option('srm_clean_on_deactive', 'no');
        }
-       //update_option('srm_affiliate_text', sanitize_text_field($_POST['srm_affiliate_text']));
+
        update_option('srm_affiliate_url', sanitize_text_field($_POST['srm_affiliate_url']));
+       update_option('srm_email_from_name', sanitize_text_field(stripslashes($_POST['srm_email_from_name'])));
        update_option('srm_email_from_email', sanitize_text_field($_POST['srm_email_from_email']));
-       update_option('srm_email_subject', sanitize_text_field($_POST['srm_email_subject']));
+       update_option('srm_email_subject', sanitize_text_field(stripslashes($_POST['srm_email_subject'])));
        update_option('srm_email_template', wp_kses_post($_POST['srm_email_template']));
        starfish_notice_data_successfully_saved();
    }
@@ -55,11 +56,6 @@ if ( isset($_POST['srm_settings_nonce']) && (! isset( $_POST['srm_settings_nonce
 		<?php echo __( 'Turn off Starfish branding on Funnel pages.', 'starfish' ); ?></label>
 		</fieldset></td>
 		</tr>
-    <!-- <tr>
-      <th scope="row"><label for="srm_affiliate_text"><?php echo __( 'Affiliate Text', 'starfish' ); ?></label></th>
-      <td><input name="srm_affiliate_text" type="text" id="srm_affiliate_text" value="<?php echo esc_html(get_option('srm_affiliate_text')); ?>" class="regular-text">
-        <p class="description" id="srm_affiliate_text-description"><?php echo __( 'Override Powered by Starfish Text', 'starfish' ); ?></p></td>
-    </tr> -->
     <tr>
       <th scope="row"><label for="srm_affiliate_url"><?php echo __( 'Affiliate URL', 'starfish' ); ?></label></th>
       <td><input name="srm_affiliate_url" type="text" id="srm_affiliate_url" value="<?php echo esc_url(get_option('srm_affiliate_url')); ?>" class="regular-text">
@@ -85,7 +81,7 @@ if ( isset($_POST['srm_settings_nonce']) && (! isset( $_POST['srm_settings_nonce
   <table class="form-table">
     <tr>
 			<th scope="row"><label for="srm_email_from_name"><?php echo __( 'From Name', 'starfish' ); ?></label></th>
-			<td><input name="srm_email_from_name" type="text" id="srm_email_from_name" value="<?php echo esc_html(get_option('srm_email_from_name')); ?>" class="regular-text">
+			<td><input name="srm_email_from_name" type="text" id="srm_email_from_name" value="<?php echo esc_html(stripslashes(get_option('srm_email_from_name'))); ?>" class="regular-text">
 			<p class="description" id="srm_email_from_name-description"><?php echo __( 'The name the email will appear to be from. Supports shortcode {site-name} to use the site\'s name.', 'starfish' ); ?></p></td>
 		</tr>
     <tr>
@@ -108,7 +104,7 @@ if ( isset($_POST['srm_settings_nonce']) && (! isset( $_POST['srm_settings_nonce
 		</tr>
 		<tr>
 			<th scope="row"><label for="srm_email_subject"><?php echo __( 'Email Subject', 'starfish' ); ?></label></th>
-			<td><input name="srm_email_subject" type="text" id="srm_email_subject" value="<?php echo esc_html(get_option('srm_email_subject')); ?>" class="regular-text">
+			<td><input name="srm_email_subject" type="text" id="srm_email_subject" value="<?php echo esc_html(stripslashes(get_option('srm_email_subject'))); ?>" class="regular-text">
 			<p class="description" id="srm_email_subject-description"><?php echo __( 'Subject of the email. Supports shortcode {funnel-name} and {review-id}.', 'starfish' ); ?></p></td>
 		</tr>
     <tr>
