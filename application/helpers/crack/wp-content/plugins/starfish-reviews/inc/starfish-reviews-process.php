@@ -140,13 +140,15 @@ function srm_send_feedback_email($funnel_id, $reveiw_message, $tracking_id, $rev
 		$srm_email_replay_to_email = $reviewer_email;
 	}
 
-	//$headers[]  = 'MIME-Version: 1.0' . "\r\n";
+	$headers[]  = 'MIME-Version: 1.0' . "\r\n";
 	//$headers[] = 'Content-type: text/plain; charset=iso-8859-1' . "\r\n";
 	$headers[] = 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 
 	if(($srm_email_from_name != '') && ($srm_email_from_email != '')){
 		//$headers[] = 'From: '.$srm_email_from_name.' <'.$srm_email_from_email.'>';
-		$headers[] = "From: " . stripslashes_deep( html_entity_decode( $srm_email_from_name, ENT_COMPAT, 'UTF-8' ) ) . " <" . apply_filters( 'starfish_notification_email_header_from_email', $srm_email_from_email ) . ">\r\n";
+		//$headers[] = "From: " . stripslashes_deep( html_entity_decode( $srm_email_from_name, ENT_COMPAT, 'UTF-8' ) ) . " <" . apply_filters( 'starfish_notification_email_header_from_email', $srm_email_from_email ) . ">\r\n";
+		$headers[] = "From: " . stripslashes_deep( wp_specialchars_decode( $srm_email_from_name ) ) . " <" . apply_filters( 'starfish_notification_email_header_from_email', $srm_email_from_email ) . ">\r\n";
+		//$message_headers = "From: \"{$from_name}\" <{$admin_email}>\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
 	}
 	if(($srm_email_replay_to_email != '')){
 		$headers[] = 'Reply-To: <'.$srm_email_replay_to_email.'>';

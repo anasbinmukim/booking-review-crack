@@ -286,7 +286,7 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 					if(check_required && (yes_no_flag !== 'Yes')){
 						return false;
 					}
-          jQuery('.review_under_processing').show('slow');
+          jQuery('.review_under_processing').show();
 					var reveiw_destination_url = jQuery('#reveiw_destination_url').val();
 					var reveiw_yes_thank_you = jQuery('#reveiw_yes_thank_you').val();
 					var reveiw_no_thank_you = jQuery('#reveiw_no_thank_you').val();
@@ -322,13 +322,15 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
                   jQuery('.review_under_processing').html('<div class="success">'+reveiw_msg_thank_you+'</div>');
 									jQuery('.srm-public-review-button').show();
                   //jQuery('.review_under_processing').delay(3000).fadeOut('slow');
-									jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
+									//jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
+									jQuery('.review_submit_form_field').hide();
 									if(yes_no_flag === 'Yes'){
 										window.location = reveiw_destination_url;
 									}
                 }else{
                   jQuery('.review_under_processing').html('<span class="error">Sending error</span>');
-                  jQuery('.review_under_processing').delay(3000).fadeOut('slow');
+                  //jQuery('.review_under_processing').delay(3000).fadeOut('slow');
+									jQuery('.review_under_processing').hide();
                 }
               }
           });
@@ -374,13 +376,15 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 									jQuery('.review_under_processing').html('<div class="success">'+reveiw_msg_thank_you+'</div>');
 									jQuery('.srm-public-review-button').hide();
 									//jQuery('.review_under_processing').delay(3000).fadeOut('slow');
-									jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
+									//jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
+									jQuery('.review_submit_form_field').hide();
 									if(yes_no_flag === 'Yes'){
 										window.location = reveiw_destination_url;
 									}
 								}else{
 									jQuery('.review_under_processing').html('<span class="error">Sending error</span>');
-									jQuery('.review_under_processing').delay(3000).fadeOut('slow');
+									//jQuery('.review_under_processing').delay(3000).fadeOut('slow');
+									jQuery('.review_under_processing').hide();
 								}
 							}
 					});

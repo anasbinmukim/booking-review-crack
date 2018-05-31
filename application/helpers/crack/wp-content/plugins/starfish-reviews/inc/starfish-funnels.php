@@ -210,8 +210,8 @@ function srm_yes_result_build_meta_box( $post ){
 						<th><?php echo esc_html__( 'Icon', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Preview', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Icon-BG Color', 'starfish' ); ?></th>
-						<th><?php echo esc_html__( 'Name(Required)', 'starfish' ); ?></th>
-						<th><?php echo esc_html__( 'Destination(Required)', 'starfish' ); ?></th>
+						<th><?php echo esc_html__( 'Name', 'starfish' ); ?></th>
+						<th><?php echo esc_html__( 'Destination', 'starfish' ); ?><sup>*</sup></th>
 						<th></th>
 				</tr>
 				<?php wp_nonce_field('image_upload', 'image_upload_nonce');?>
@@ -539,7 +539,7 @@ function srm_funnel_yes_result_save_meta_box_data( $post_id ){
 			$multi_desti_icon_set = array();
 			if(count($desti_icon_arr) > 0){
 				foreach ($desti_icon_arr as $key_icon => $value_icon) {
-						if((isset($srm_desti_name_arr[$key_icon]) && ($srm_desti_name_arr[$key_icon] != '')) && (isset($srm_desti_url_arr[$key_icon]) && ($srm_desti_url_arr[$key_icon] != ''))){
+						if((isset($srm_desti_url_arr[$key_icon]) && ($srm_desti_url_arr[$key_icon] != ''))){
 							$multi_desti_icon_set[] = array(
 								'desti_icon' => $value_icon,
 								'icon_photo_id' => (isset($icon_photo_id_arr[$key_icon]) ? intval($icon_photo_id_arr[$key_icon]) : ''),

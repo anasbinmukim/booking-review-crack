@@ -64,7 +64,7 @@ jQuery(document).ready(function($) {
   $('.desti_icon').live('change', function() {
      var option_val = $(this).val();
      if(option_val == 'Google'){
-       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_google fab fa-google-plus-g"></span>');
+       $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_google fab fa-google"></span>');
      }
      if(option_val == 'Facebook'){
        $(this).parents('.mulit_desti_row').find('.mtd_icon_preview').html('<span class="faicon_preview icon_facebook fab fa-facebook-f"></span>');

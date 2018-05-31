@@ -4,7 +4,7 @@ function starfish_get_destination_icon($icon_type, $photo_id = '', $display = 'a
   $icon_html = '';
 
   if($icon_type == 'Google'){
-    $icon_html = '<span class="faicon_preview icon_google fab fa-google-plus-g"></span>';
+    $icon_html = '<span class="faicon_preview icon_google fab fa-google"></span>';
   }
   if($icon_type == 'Facebook'){
     $icon_html = '<span class="faicon_preview icon_facebook fab fa-facebook-f"></span>';
