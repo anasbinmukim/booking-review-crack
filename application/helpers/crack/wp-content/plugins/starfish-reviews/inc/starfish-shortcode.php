@@ -49,6 +49,11 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 		$lebel_no = '<span class="faicon iconno far fa-thumbs-down faicon_flip"></span>';
 	}
 
+	if($srm_no_destination == 'multiple'){
+		$funnel_desti_type = 'multiple';
+	}else{
+		$funnel_desti_type = 'single';
+	}
 
 	$srm_no_thank_you_msg = esc_html(get_post_meta( $funnel_id, '_srm_no_thank_you_msg', true ));
 ?>
@@ -135,6 +140,7 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 
 		<input type="hidden" name="reveiw_no_thank_you" id="reveiw_no_thank_you" value="<?php echo $srm_no_thank_you_msg; ?>">
 	</div>
+	<input type="hidden" name="funnel_desti_type" id="funnel_desti_type" value="<?php echo $funnel_desti_type; ?>">
 	<input type="hidden" name="funnel_id" id="funnel_id" value="<?php echo $funnel_id; ?>">
 	<input type="hidden" name="tracking_id" id="tracking_id" value="<?php echo $tracking_id; ?>">
 	<?php $srm_reveiw_nonce = wp_create_nonce( "srm_reveiw_nonce" ); ?>
@@ -142,14 +148,51 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 </div><!-- review_submit_form_field -->
 </form>
 <div class="review_under_processing">Sending...</div>
-<?php if(get_post_meta( $funnel_id, '_srm_disable_review_gating', true ) == 'yes'){ ?>
+<?php if((get_post_meta( $funnel_id, '_srm_disable_review_gating', true ) == 'yes')){ ?>
 		<?php
 			$srm_public_review_text = esc_html(get_post_meta( $funnel_id, '_srm_public_review_text', true ));
 			if($srm_public_review_text == ''){
 				$srm_public_review_text = esc_html__('Leave a Public Review', 'starfish');
 			}
 		?>
-		<div class="srm-public-review-button"><a href="<?php echo $srm_review_destination_url; ?>" id="srm-public-review-button-link" class="public-review-button"><?php echo $srm_public_review_text; ?></a></div>
+		<div class="srm-public-review-button">
+		<?php if($srm_no_destination == 'single'){ ?>
+			<a href="javascript:void(0)" class="srm-leave-public-review public-review-button" data-desti_url="<?php echo $srm_review_destination_url; ?>">
+			<?php echo $srm_public_review_text; ?>
+			</a>
+		<?php } ?>
+		<?php
+		if($srm_no_destination == 'multiple'){
+			$srm_multi_desti = get_post_meta( $funnel_id, '_srm_multi_desti', true );
+			$output_icon_style = '';
+			?>
+			<h3><?php echo $srm_public_review_text; ?></h3>
+			<div class="review-multiple-destination">
+				<?php if(isset($srm_multi_desti) && is_array($srm_multi_desti) && (count($srm_multi_desti) > 0)){ ?>
+					<ul class="multi-desti-buttons">
+					<?php foreach ($srm_multi_desti as $key => $multi_desti) { ?>
+							<?php
+								$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
+								$icon_photo_id = intval( $multi_desti['icon_photo_id'] );
+								$srm_desti_color = esc_html( $multi_desti['srm_desti_color'] );
+								$srm_desti_bg_color = esc_html( $multi_desti['srm_desti_bg_color'] );
+								$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
+								$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
+
+								$icon_class = '';
+								if($srm_destination_icon != ''){
+									$icon_class = sanitize_title_with_dashes($srm_destination_icon);
+								}
+							?>
+							<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="srm-leave-public-review" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
+							<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?>
+							</a></li>
+						<?php } ?>
+					</ul>
+					<?php } ?>
+			</div>
+		<?php } ?>
+		</div><!-- srm-public-review-button -->
 <?php } ?>
 
 <?php $min_review_alert_text_1 = esc_html__( 'You need to enter at least', 'starfish' ); ?>
@@ -250,6 +293,7 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 					var srm_reviewer_name = jQuery('#srm_reviewer_name').val();
 					var srm_reviewer_email = jQuery('#srm_reviewer_email').val();
 					var srm_reviewer_phone = jQuery('#srm_reviewer_phone').val();
+					var funnel_desti_type = jQuery('#funnel_desti_type').val();
 					var reveiw_msg_thank_you = '';
 					if(yes_no_flag !== 'Yes'){
 							reveiw_msg_thank_you = reveiw_no_thank_you;
@@ -328,7 +372,7 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 								//alert(data.msg);
 								if(data.msg == 'Complete'){
 									jQuery('.review_under_processing').html('<div class="success">'+reveiw_msg_thank_you+'</div>');
-									jQuery('.srm-public-review-button').show();
+									jQuery('.srm-public-review-button').hide();
 									//jQuery('.review_under_processing').delay(3000).fadeOut('slow');
 									jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
 									if(yes_no_flag === 'Yes'){
@@ -340,6 +384,14 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 								}
 							}
 					});
+			});
+	});
+
+	//Process public reveiw
+	jQuery(document).ready(function($) {
+			jQuery('.srm-leave-public-review').click(function() {
+					var desti_url = jQuery(this).data('desti_url');
+					window.location = desti_url;
 			});
 	});
 </script>

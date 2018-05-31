@@ -177,6 +177,14 @@ function srm_yes_result_build_meta_box( $post ){
 		}
 	}
 
+	if($srm_no_destination == 'single'){
+		$multi_desti_row_style = 'display: none;';
+		$single_desti_row_style = 'display: table-row;';
+	}else{
+		$multi_desti_row_style = 'display: table-row;';
+		$single_desti_row_style = 'display: none;';
+	}
+
 	?>
 	<div class='inside'>
 		<table class="form-table">
@@ -194,16 +202,16 @@ function srm_yes_result_build_meta_box( $post ){
 			</select>
 		</td>
 		</tr>
-		<tr>
+		<tr class="multiple-destination-edit" style="<?php echo $multi_desti_row_style; ?>">
 			<td class="nopadding multi_destination" colspan="2">
 				<strong><?php echo esc_html__( 'Set Multiple Destinations', 'starfish' ); ?></strong>
 				<table class="mulit_desti_row_section">
 				<tr>
 						<th><?php echo esc_html__( 'Icon', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Preview', 'starfish' ); ?></th>
-						<th><?php echo esc_html__( 'Icon Color/Background', 'starfish' ); ?></th>
-						<th><?php echo esc_html__( 'Name', 'starfish' ); ?></th>
-						<th><?php echo esc_html__( 'Destination', 'starfish' ); ?></th>
+						<th><?php echo esc_html__( 'Icon-BG Color', 'starfish' ); ?></th>
+						<th><?php echo esc_html__( 'Name(Required)', 'starfish' ); ?></th>
+						<th><?php echo esc_html__( 'Destination(Required)', 'starfish' ); ?></th>
 						<th></th>
 				</tr>
 				<?php wp_nonce_field('image_upload', 'image_upload_nonce');?>
@@ -308,17 +316,17 @@ function srm_yes_result_build_meta_box( $post ){
 				</table>
 			</td>
 		</tr>
-		<tr>
+		<tr class="single-destination-edit" style="<?php echo $single_desti_row_style; ?>">
 		<th scope="row"><label for="srm_review_destination"><?php echo __( 'Review Destination<sup>*</sup>', 'starfish' ); ?></label></th>
 		<td><input type="text" class="regular-text" name="srm_review_destination" id="srm_review_destination" value="<?php echo $srm_review_destination; ?>" placeholder="<?php echo esc_html__( 'Review URL', 'starfish' ); ?>">
 		<p class="description" id="srm_yn_question-description"><?php echo __( 'Destination is required. Use for single and default destination.', 'starfish' ); ?></p></td>
 		</tr>
-		<tr>
+		<tr class="single-destination-edit" style="<?php echo $single_desti_row_style; ?>">
 		<th scope="row"><label for="srm_review_auto_redirect"><?php echo esc_html__( 'Auto Redirect (seconds)', 'starfish' ); ?></label></th>
 		<td><input type="text" class="regular-text" name="srm_review_auto_redirect" id="srm_review_auto_redirect" value="<?php echo $srm_review_auto_redirect; ?>" placeholder="10">
 		<p class="description" id="srm_review_auto_redirect-description"><?php echo esc_html__( 'Auto-forward to destination URL after X number of seconds. 0 for disable.', 'starfish' ); ?></p></td>
 		</tr>
-		<tr>
+		<tr class="single-destination-edit" style="<?php echo $single_desti_row_style; ?>">
 		<th scope="row"><label for="srm_button_text"><?php echo esc_html__( 'Submit Button (Positive)', 'starfish' ); ?></label></th>
 		<td><input type="text" class="regular-text" name="srm_button_text" id="srm_button_text" value="<?php echo $srm_button_text; ?>" placeholder="<?php echo esc_html__( 'Submit Review', 'starfish' ); ?>">
 		</td>
@@ -531,7 +539,7 @@ function srm_funnel_yes_result_save_meta_box_data( $post_id ){
 			$multi_desti_icon_set = array();
 			if(count($desti_icon_arr) > 0){
 				foreach ($desti_icon_arr as $key_icon => $value_icon) {
-						if(isset($srm_desti_url_arr[$key_icon]) && ($srm_desti_url_arr[$key_icon] != '')){
+						if((isset($srm_desti_name_arr[$key_icon]) && ($srm_desti_name_arr[$key_icon] != '')) && (isset($srm_desti_url_arr[$key_icon]) && ($srm_desti_url_arr[$key_icon] != ''))){
 							$multi_desti_icon_set[] = array(
 								'desti_icon' => $value_icon,
 								'icon_photo_id' => (isset($icon_photo_id_arr[$key_icon]) ? intval($icon_photo_id_arr[$key_icon]) : ''),
@@ -544,13 +552,25 @@ function srm_funnel_yes_result_save_meta_box_data( $post_id ){
 				}
 			}
 
-			update_post_meta( $post_id, '_srm_multi_desti', $multi_desti_icon_set );
+			if(count($multi_desti_icon_set) > 0){
+				update_post_meta( $post_id, '_srm_multi_desti', $multi_desti_icon_set );
+				$multi_desti_required_value = true;
+			}else{
+				$multi_desti_required_value = false;
+			}
+
 	}
 
 
-	if(!isset($_REQUEST['srm_review_destination']) || ($_REQUEST['srm_review_destination'] == '')){
+	if((isset( $_REQUEST['srm_no_destination'] ) && ($_REQUEST['srm_no_destination'] == 'single')) && (!isset($_REQUEST['srm_review_destination']) || ($_REQUEST['srm_review_destination'] == ''))){
 		global $wpdb;
     $wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $post_id ) );
+		add_filter( 'redirect_post_location', 'srm_funnel_add_notice_query_var', 99 );
+	}
+
+	if((isset( $_REQUEST['srm_no_destination'] ) && ($_REQUEST['srm_no_destination'] == 'multiple')) && (! $multi_desti_required_value)){
+		global $wpdb;
+		$wpdb->update( $wpdb->posts, array( 'post_status' => 'draft' ), array( 'ID' => $post_id ) );
 		add_filter( 'redirect_post_location', 'srm_funnel_add_notice_query_var', 99 );
 	}
 

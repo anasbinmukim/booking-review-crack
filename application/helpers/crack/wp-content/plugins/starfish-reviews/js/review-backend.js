@@ -27,6 +27,17 @@ jQuery(document).on('change', '#disable_review_gating', function() {
     }
 });
 
+jQuery('#srm_no_destination').live('change', function() {
+   var option_val = jQuery(this).val();
+   if(option_val == 'multiple'){
+      jQuery('.multiple-destination-edit').show();
+      jQuery('.single-destination-edit').hide();
+   }else{
+     jQuery('.multiple-destination-edit').hide();
+     jQuery('.single-destination-edit').show();
+   }
+});
+
 
 
 /*********Multiple Destination*********/
@@ -49,7 +60,6 @@ jQuery(document).ready(function($) {
     e.preventDefault();
     return false;
   });
-
 
   $('.desti_icon').live('change', function() {
      var option_val = $(this).val();
