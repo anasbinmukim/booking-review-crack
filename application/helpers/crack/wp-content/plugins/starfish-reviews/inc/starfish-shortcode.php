@@ -115,21 +115,21 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 		<p>
 			<?php $name_required = $required_class = ''; if(get_post_meta( $funnel_id, '_srm_ask_name_required', true ) == 'yes'){ $name_required = __( ' (Required)', 'starfish' ); $required_class = ' required '; } ?>
 			<input type="text" class="<?php echo $required_class; ?>" name="srm_reviewer_name" id="srm_reviewer_name" placeholder="<?php echo __( 'Your Name', 'starfish' ); echo $name_required; ?>">
-			<span class="alert_message name_alert"><?php echo __( 'Please enter your name.', 'starfish' ); ?></span>
+			<span class="alert_message name_alert"><?php echo esc_html__( 'Please enter your name.', 'starfish' ); ?></span>
 		</p>
 		<?php } ?>
 		<?php if(get_post_meta( $funnel_id, '_srm_ask_email', true ) == 'yes'){ ?>
 		<p>
 			<?php $email_required = $required_class = ''; if(get_post_meta( $funnel_id, '_srm_ask_email_required', true ) == 'yes'){ $email_required = __( ' (Required)', 'starfish' ); $required_class = ' required '; } ?>
 			<input type="text" class="<?php echo $required_class; ?>" name="srm_reviewer_email" id="srm_reviewer_email" placeholder="<?php echo __( 'Your Email', 'starfish' ); echo $email_required; ?>">
-			<span class="alert_message email_alert"><?php echo __( 'Please enter your email address.', 'starfish' ); ?></span>
+			<span class="alert_message email_alert"><?php echo esc_html__( 'Please enter your email address.', 'starfish' ); ?></span>
 		</p>
 		<?php } ?>
 		<?php if(get_post_meta( $funnel_id, '_srm_ask_phone', true ) == 'yes'){ ?>
 		<p>
 			<?php $phone_required = $required_class = ''; if(get_post_meta( $funnel_id, '_srm_ask_phone_required', true ) == 'yes'){ $phone_required = __( ' (Required)', 'starfish' ); $required_class = ' required '; } ?>
 			<input type="text" class="<?php echo $required_class; ?>" name="srm_reviewer_phone" id="srm_reviewer_phone" placeholder="<?php echo __( 'Your Phone', 'starfish' ); echo $phone_required; ?>">
-			<span class="alert_message phone_alert"><?php echo __( 'Please enter your phone number.', 'starfish' ); ?></span>
+			<span class="alert_message phone_alert"><?php echo esc_html__( 'Please enter your phone number.', 'starfish' ); ?></span>
 		</p>
 		<?php } ?>
 
@@ -143,11 +143,17 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 </form>
 <div class="review_under_processing">Sending...</div>
 <?php if(get_post_meta( $funnel_id, '_srm_disable_review_gating', true ) == 'yes'){ ?>
-		<div class="srm-public-review-button"><a href="<?php echo $srm_review_destination_url; ?>" id="srm-public-review-button-link" class="public-review-button"><?php echo esc_html(get_post_meta( $funnel_id, '_srm_public_review_text', true )); ?></a></div>
+		<?php
+			$srm_public_review_text = esc_html(get_post_meta( $funnel_id, '_srm_public_review_text', true ));
+			if($srm_public_review_text == ''){
+				$srm_public_review_text = esc_html__('Leave a Public Review', 'starfish');
+			}
+		?>
+		<div class="srm-public-review-button"><a href="<?php echo $srm_review_destination_url; ?>" id="srm-public-review-button-link" class="public-review-button"><?php echo $srm_public_review_text; ?></a></div>
 <?php } ?>
 
-<?php $min_review_alert_text_1 = __( 'You need to enter at least', 'starfish' ); ?>
-<?php $min_review_alert_text_2 = __( 'characters.', 'starfish' ); ?>
+<?php $min_review_alert_text_1 = esc_html__( 'You need to enter at least', 'starfish' ); ?>
+<?php $min_review_alert_text_2 = esc_html__( 'characters.', 'starfish' ); ?>
 
 <?php
 $srm_btn_no_text = 'Send Feedback';
@@ -341,9 +347,9 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 <?php
 	if(get_option('srm_affiliate_text') != ''){
 		//$srm_affiliate_text = esc_html(get_option('srm_affiliate_text'));
-		$srm_affiliate_text = __( 'Powered by Starfish', 'starfish' );
+		$srm_affiliate_text = esc_html__( 'Powered by Starfish', 'starfish' );
 	}else{
-		$srm_affiliate_text = __( 'Powered by Starfish', 'starfish' );
+		$srm_affiliate_text = esc_html__( 'Powered by Starfish', 'starfish' );
 	}
 	if(get_option('srm_affiliate_url') != ''){
 		$srm_affiliate_url = esc_url(get_option('srm_affiliate_url'));
