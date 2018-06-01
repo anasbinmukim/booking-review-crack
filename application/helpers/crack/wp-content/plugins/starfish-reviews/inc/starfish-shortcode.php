@@ -157,7 +157,7 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 		?>
 		<div class="srm-public-review-button">
 		<?php if($srm_no_destination == 'single'){ ?>
-			<a href="javascript:void(0)" class="srm-leave-public-review public-review-button" data-desti_url="<?php echo $srm_review_destination_url; ?>">
+			<a href="javascript:void(0)" class="srm-leave-public-review public-review-button" data-desti_name="" data-desti_url="<?php echo $srm_review_destination_url; ?>">
 			<?php echo $srm_public_review_text; ?>
 			</a>
 		<?php } ?>
@@ -192,6 +192,7 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 					<?php } ?>
 			</div>
 		<?php } ?>
+		<input type="hidden" id="srm-created-review-id" value="">
 		</div><!-- srm-public-review-button -->
 <?php } ?>
 
@@ -304,6 +305,7 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
               funnel_id: jQuery('#funnel_id').val(),
 							tracking_id: jQuery('#tracking_id').val(),
 							review_text: jQuery('#review_text').val(),
+							desti_type: funnel_desti_type,
 							reviewer_name: srm_reviewer_name,
 							reviewer_email: srm_reviewer_email,
 							reviewer_phone: srm_reviewer_phone,
@@ -324,6 +326,8 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
                   //jQuery('.review_under_processing').delay(3000).fadeOut('slow');
 									//jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
 									jQuery('.review_submit_form_field').hide();
+									//Set just now retruned review ID
+									jQuery('#srm-created-review-id').val(data.review_id);
 									if(yes_no_flag === 'Yes'){
 										window.location = reveiw_destination_url;
 									}
@@ -356,6 +360,7 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 							yes_no_flag: yes_no_flag,
 							funnel_id: jQuery('#funnel_id').val(),
 							tracking_id: jQuery('#tracking_id').val(),
+							desti_type: 'multiple',
 							review_text: '',
 							reviewer_name: '',
 							reviewer_email: '',
@@ -375,9 +380,9 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 								if(data.msg == 'Complete'){
 									jQuery('.review_under_processing').html('<div class="success">'+reveiw_msg_thank_you+'</div>');
 									jQuery('.srm-public-review-button').hide();
-									//jQuery('.review_under_processing').delay(3000).fadeOut('slow');
-									//jQuery('.review_submit_form_field').delay(1000).fadeOut('slow');
 									jQuery('.review_submit_form_field').hide();
+									//Set just now retruned review ID
+									jQuery('#srm-created-review-id').val(data.review_id);
 									if(yes_no_flag === 'Yes'){
 										window.location = reveiw_destination_url;
 									}
@@ -394,8 +399,34 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 	//Process public reveiw
 	jQuery(document).ready(function($) {
 			jQuery('.srm-leave-public-review').click(function() {
+					var desti_name = jQuery(this).data('desti_name');
 					var desti_url = jQuery(this).data('desti_url');
-					window.location = desti_url;
+					var funnel_desti_type = jQuery('#funnel_desti_type').val();
+					//window.location = desti_url;
+					var UpdateDataContainer = {
+							security: '<?php echo $srm_reveiw_nonce; ?>',
+							desti_name: desti_name,
+							desti_url: desti_url,
+							desti_type: funnel_desti_type,
+							review_id: jQuery('#srm-created-review-id').val(),
+							action: 'update-starfish-review-data'
+					};
+					jQuery.ajax({
+							action: "update-starfish-review-data",
+							type: "POST",
+							dataType: "json",
+							url: srm_ajaxurl,
+							data: UpdateDataContainer,
+							success: function(data){
+								//alert(data.msg);
+								if(data.msg == 'Complete'){
+										window.location = desti_url;
+								}else{
+									jQuery('.review_under_processing').html('<span class="error">Sending error</span>');
+									jQuery('.review_under_processing').hide();
+								}
+							}
+					});
 			});
 	});
 </script>

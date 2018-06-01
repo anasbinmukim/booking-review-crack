@@ -8,25 +8,25 @@ add_action( 'init', 'srm_register_reviews_cpt' );
  */
 function srm_register_reviews_cpt() {
 	$labels = array(
-		'name'               => _x( 'Reviews', 'post type general name', 'starfish' ),
-		'singular_name'      => _x( 'Review', 'post type singular name', 'starfish' ),
-		'menu_name'          => _x( 'Starfish Reviews', 'admin menu', 'starfish' ),
-		'name_admin_bar'     => _x( 'Starfish Review', 'add new on admin bar', 'starfish' ),
-		'add_new'            => _x( 'Add New', 'Review', 'starfish' ),
-		'add_new_item'       => __( 'Add New Review', 'starfish' ),
-		'new_item'           => __( 'New Review', 'starfish' ),
-		'edit_item'          => __( 'Edit Review', 'starfish' ),
-		'view_item'          => __( 'View Review', 'starfish' ),
-		'all_items'          => __( 'All Reviews', 'starfish' ),
-		'search_items'       => __( 'Search Reviews', 'starfish' ),
-		'parent_item_colon'  => __( 'Parent Reviews:', 'starfish' ),
-		'not_found'          => __( 'No Reviews found.', 'starfish' ),
-		'not_found_in_trash' => __( 'No Reviews found in Trash.', 'starfish' )
+		'name'               => esc_html_x( 'Reviews', 'post type general name', 'starfish' ),
+		'singular_name'      => esc_html_x( 'Review', 'post type singular name', 'starfish' ),
+		'menu_name'          => esc_html_x( 'Starfish Reviews', 'admin menu', 'starfish' ),
+		'name_admin_bar'     => esc_html_x( 'Starfish Review', 'add new on admin bar', 'starfish' ),
+		'add_new'            => esc_html_x( 'Add New', 'Review', 'starfish' ),
+		'add_new_item'       => esc_html__( 'Add New Review', 'starfish' ),
+		'new_item'           => esc_html__( 'New Review', 'starfish' ),
+		'edit_item'          => esc_html__( 'Edit Review', 'starfish' ),
+		'view_item'          => esc_html__( 'View Review', 'starfish' ),
+		'all_items'          => esc_html__( 'All Reviews', 'starfish' ),
+		'search_items'       => esc_html__( 'Search Reviews', 'starfish' ),
+		'parent_item_colon'  => esc_html__( 'Parent Reviews:', 'starfish' ),
+		'not_found'          => esc_html__( 'No Reviews found.', 'starfish' ),
+		'not_found_in_trash' => esc_html__( 'No Reviews found in Trash.', 'starfish' )
 	);
 
 	$args = array(
 		'labels'             => $labels,
-    'description'        => __( 'Description.', 'starfish' ),
+    'description'        => esc_html__( 'Description.', 'starfish' ),
 		'public'             => false,
 		'publicly_queryable' => false,
 		'show_ui'            => true,
@@ -58,12 +58,13 @@ add_action('admin_menu', 'srm_disable_new_review_link');
 function srm_manage_starfish_review_posts_columns($post_columns) {
     $post_columns = array(
         'cb' => $post_columns['cb'],
-        'title' => __( 'Date & Time', 'starfish' ),
-				'track_id' => __( 'ID', 'starfish' ),
-				'reviewer' => __( 'Reviewer', 'starfish' ),
-				'feedback' => __( 'Feedback', 'starfish' ),
-				'message' => __( 'Message', 'starfish' ),
-        'funnel' => __( 'Funnel', 'starfish' )
+        'title' => esc_html__( 'Date & Time', 'starfish' ),
+				'track_id' => esc_html__( 'ID', 'starfish' ),
+				'reviewer' => esc_html__( 'Reviewer', 'starfish' ),
+				'feedback' => esc_html__( 'Feedback', 'starfish' ),
+				'message' => esc_html__( 'Message', 'starfish' ),
+        'funnel' => esc_html__( 'Funnel', 'starfish' ),
+				'destination' => esc_html__( 'Destination', 'starfish' )
         );
     return $post_columns;
 }
@@ -73,11 +74,12 @@ add_action('manage_starfish_review_posts_columns', 'srm_manage_starfish_review_p
 * add order column to admin listing screen for reviews
 */
 function srm_add_new_starfish_review_column($review_columns) {
-	$review_columns['track_id'] = __( 'ID', 'starfish' );
-	$review_columns['reviewer'] = __( 'Reviewer', 'starfish' );
-	$review_columns['feedback'] = __( 'Feedback', 'starfish' );
-	$review_columns['message'] = __( 'Message', 'starfish' );
-	$review_columns['funnel'] = __( 'Funnel', 'starfish' );
+	$review_columns['track_id'] = esc_html__( 'ID', 'starfish' );
+	$review_columns['reviewer'] = esc_html__( 'Reviewer', 'starfish' );
+	$review_columns['feedback'] = esc_html__( 'Feedback', 'starfish' );
+	$review_columns['message'] = esc_html__( 'Message', 'starfish' );
+	$review_columns['funnel'] = esc_html__( 'Funnel', 'starfish' );
+	$review_columns['destination'] = esc_html__( 'Destination', 'starfish' );
   return $review_columns;
 }
 add_action('manage_edit-starfish_review_columns', 'srm_add_new_starfish_review_column');
@@ -108,9 +110,9 @@ function srm_starfish_review_show_order_column($name){
 			$feedback = get_post_meta($post->ID, '_srm_feedback', true);
 			$feedback = esc_html($feedback);
 			if($feedback == 'Yes'){
-				echo __( 'Positive', 'starfish' );
+				echo esc_html__( 'Positive', 'starfish' );
 			}else{
-				echo __( 'Negative', 'starfish' );
+				echo esc_html__( 'Negative', 'starfish' );
 			}
 			break;
 		case 'message':
@@ -121,9 +123,11 @@ function srm_starfish_review_show_order_column($name){
 			$srm_funnel_id = get_post_meta($post->ID, '_srm_funnel_id', true);
 			$srm_funnel_title = get_the_title($srm_funnel_id);
 			echo esc_html($srm_funnel_title);
+			break;
+		case 'destination':
 			if(get_post_meta($post->ID, '_srm_desti_name', true) != ''){
 					$desti_name = esc_html(get_post_meta($post->ID, '_srm_desti_name', true));
-					echo '<br />Destination: '.$desti_name;
+					echo $desti_name;
 			}
 			break;
    default:
@@ -139,6 +143,7 @@ function srm_starfish_review_column_register_sortable($columns){
   $columns['track_id'] = '_srm_tracking_id';
 	$columns['feedback'] = '_srm_feedback';
 	$columns['funnel'] = '_srm_funnel_id';
+	$columns['destination'] = '_srm_desti_name';
   return $columns;
 }
 add_filter('manage_edit-starfish_review_sortable_columns','srm_starfish_review_column_register_sortable');
@@ -172,13 +177,13 @@ function srm_starfish_review_add_top_review_graph() {
 
 				if($total_review <= 0){
 						echo '<div class="wrap">';
-						echo '<h2><span class="dashicons dashicons_reviews dashicons-star-filled"></span>'. __('Reviews', 'starfish') .'</h2>';
+						echo '<h2><span class="dashicons dashicons_reviews dashicons-star-filled"></span>'. esc_html__('Reviews', 'starfish') .'</h2>';
 						echo '</div>';
 						return;
 				}
 
         echo '<div class="wrap">';
-            echo '<h2><span class="dashicons dashicons_reviews dashicons-star-filled"></span>'. __('Reviews', 'starfish') .'</h2>';
+            echo '<h2><span class="dashicons dashicons_reviews dashicons-star-filled"></span>'. esc_html__('Reviews', 'starfish') .'</h2>';
 						?>
 							<div id="srm_review_chart_wrap">
 								<div class="srm_review_rating" id="srm_review_rating">
@@ -195,10 +200,10 @@ function srm_starfish_review_add_top_review_graph() {
 											}
 
 										?>
-										<div id="rating_status"><span class="srm_admin_review_status_label"><?php echo __( 'Rating:', 'starfish' ); ?></span> <?php echo $ratings_status; ?></div>
-										<div id="total_rating"><span class="srm_admin_label"><?php echo __( 'Total:', 'starfish' ); ?></span> <span class="srm_number srm_number_total"><?php echo $total_review; ?></span></div>
-										<div id="positive_feedback"><span class="srm_admin_label"><?php echo __( 'Positive:', 'starfish' ); ?></span> <span class="srm_number srm_number_postitive"><?php echo $positive_review; ?></span></div>
-										<div id="negative_feedback"><span class="srm_admin_label"><?php echo __( 'Negative:', 'starfish' ); ?></span> <span class="srm_number srm_number_negative"><?php echo $negative_review; ?></span></div>
+										<div id="rating_status"><span class="srm_admin_review_status_label"><?php echo esc_html__( 'Rating:', 'starfish' ); ?></span> <?php echo $ratings_status; ?></div>
+										<div id="total_rating"><span class="srm_admin_label"><?php echo esc_html__( 'Total:', 'starfish' ); ?></span> <span class="srm_number srm_number_total"><?php echo $total_review; ?></span></div>
+										<div id="positive_feedback"><span class="srm_admin_label"><?php echo esc_html__( 'Positive:', 'starfish' ); ?></span> <span class="srm_number srm_number_postitive"><?php echo $positive_review; ?></span></div>
+										<div id="negative_feedback"><span class="srm_admin_label"><?php echo esc_html__( 'Negative:', 'starfish' ); ?></span> <span class="srm_number srm_number_negative"><?php echo $negative_review; ?></span></div>
 								</div><!-- srm_review_rating -->
 								<div class="srm_review_chart" id="srm_review_chart">
 									<div id="piechart"></div>
@@ -297,19 +302,19 @@ function srm_review_status($total, $positive, $negative){
 		$score_text = '';
 		$score_class = '';
 		if($score <= 0){
-				$score_text = __( 'Poor', 'starfish' );
+				$score_text = esc_html__( 'Poor', 'starfish' );
 				$score_class = 'poor';
 		}elseif(($score >= 1) && ($score <= 29)){
-				$score_text = __( 'Average', 'starfish' );
+				$score_text = esc_html__( 'Average', 'starfish' );
 				$score_class = 'average';
 		}elseif(($score >= 30) && ($score <= 69)){
-				$score_text = __( 'Good', 'starfish' );
+				$score_text = esc_html__( 'Good', 'starfish' );
 				$score_class = 'good';
 		}elseif(($score >= 70) && ($score <= 100)){
-				$score_text = __( 'Excellent', 'starfish' );
+				$score_text = esc_html__( 'Excellent', 'starfish' );
 				$score_class = 'excellent';
 		}elseif($score > 100){
-				$score_text = __( 'Excellent', 'starfish' );
+				$score_text = esc_html__( 'Excellent', 'starfish' );
 				$score_class = 'excellent';
 		}
 		$score_result['name'] = $score_text;

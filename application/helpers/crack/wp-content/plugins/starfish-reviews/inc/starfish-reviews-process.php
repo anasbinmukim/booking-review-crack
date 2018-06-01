@@ -4,7 +4,7 @@
 **Process Submitted Reviews
 **/
 function srm_send_starfish_review_data() {
-	$funnel_id = $_POST['funnel_id'];
+	$funnel_id = intval($_POST['funnel_id']);
 	$tracking_id = sanitize_text_field($_POST['tracking_id']);
 	$yes_no_flag = sanitize_text_field($_POST['yes_no_flag']);
 	$review_text = sanitize_textarea_field($_POST['review_text']);
@@ -14,7 +14,10 @@ function srm_send_starfish_review_data() {
 	$srm_reviewer_email = sanitize_text_field($_POST['reviewer_email']);
 	$srm_reviewer_phone = sanitize_text_field($_POST['reviewer_phone']);
 
+	$desti_type = sanitize_text_field($_POST['desti_type']);
 	$srm_desti_name = sanitize_text_field($_POST['desti_name']);
+
+
 
 	$current_local_time = date( 'j M Y g:i a', current_time( 'timestamp', 0 ) );
 
@@ -34,8 +37,18 @@ function srm_send_starfish_review_data() {
 						add_post_meta($review_id, '_srm_funnel_id', $funnel_id);
 						add_post_meta($review_id, '_srm_tracking_id', $tracking_id);
 						add_post_meta($review_id, '_srm_destination_url', $reveiw_destination_url);
+						add_post_meta($review_id, '_srm_desti_type', $desti_type);
 
-						if($srm_desti_name != ''){
+						//Single destination negative feedback set destination "Yes"
+						if(($yes_no_flag == 'Yes') && ($desti_type == 'single')){
+							add_post_meta($review_id, '_srm_desti_name', 'Yes');
+						}
+
+						if(($yes_no_flag != 'Yes') && (($desti_type == 'single') || ($desti_type == 'multiple'))){
+							add_post_meta($review_id, '_srm_desti_name', 'No');
+						}
+
+						if(($srm_desti_name != '') && ($desti_type == 'multiple')){
 							add_post_meta($review_id, '_srm_desti_name', $srm_desti_name);
 						}
 
@@ -53,13 +66,44 @@ function srm_send_starfish_review_data() {
 		if($yes_no_flag != 'Yes'){
 			srm_send_feedback_email($funnel_id, $review_text, $tracking_id, $review_id);
 		}
-		echo json_encode(array("msg" => "Complete"));
+		echo json_encode(array("msg" => "Complete", "review_id" => $review_id));
 		exit;
 	}
 
 }
 add_action('wp_ajax_send-starfish-review-data', 'srm_send_starfish_review_data');
 add_action('wp_ajax_nopriv_send-starfish-review-data', 'srm_send_starfish_review_data');
+
+
+/**
+**Update Submitted Reviews
+**/
+function srm_update_starfish_review_data() {
+	$review_id = intval($_POST['review_id']);
+	$desti_url = sanitize_text_field($_POST['desti_url']);
+	$desti_name = sanitize_text_field($_POST['desti_name']);
+	$desti_type = sanitize_text_field($_POST['desti_type']);
+
+	if (!check_ajax_referer( 'srm_reveiw_nonce', 'security' )) {
+		echo json_encode(array("msg" => "Error"));
+		exit;
+	}else{
+
+		if(($desti_type == 'single')){
+			update_post_meta($review_id, '_srm_desti_name', 'Yes');
+		}
+
+		if(($desti_name != '') && ($desti_type == 'multiple')){
+			update_post_meta($review_id, '_srm_desti_name', $desti_name);
+		}
+
+		echo json_encode(array("msg" => "Complete"));
+		exit;
+	}
+
+}
+add_action('wp_ajax_update-starfish-review-data', 'srm_update_starfish_review_data');
+add_action('wp_ajax_nopriv_update-starfish-review-data', 'srm_update_starfish_review_data');
 
 
 function srm_send_feedback_email($funnel_id, $reveiw_message, $tracking_id, $review_id){
