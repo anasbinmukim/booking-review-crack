@@ -120,6 +120,7 @@ function srm_send_feedback_email($funnel_id, $reveiw_message, $tracking_id, $rev
 	$search_subject[] = '{funnel-name}';
 	$replace_subject[] = $funnel_name;
 	$email_subject = str_replace($search_subject, $replace_subject, $email_subject);
+	$email_subject = wp_specialchars_decode( esc_html( $email_subject ), ENT_QUOTES );
 
 	$reviewer_name = esc_html(get_post_meta($review_id, '_srm_reviewer_name', true));
 	$reviewer_email = esc_html(get_post_meta($review_id, '_srm_reviewer_email', true));
