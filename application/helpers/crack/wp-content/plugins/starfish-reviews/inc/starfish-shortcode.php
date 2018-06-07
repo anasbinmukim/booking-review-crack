@@ -49,6 +49,10 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 		$lebel_no = '<span class="faicon iconno far fa-thumbs-down faicon_flip"></span>';
 	}
 
+	if($srm_no_destination == ''){
+		$srm_no_destination = 'single';
+	}
+
 	if($srm_no_destination == 'multiple'){
 		$funnel_desti_type = 'multiple';
 	}else{
