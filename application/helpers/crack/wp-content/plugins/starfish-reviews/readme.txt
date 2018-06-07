@@ -4,7 +4,7 @@ Donate link: https://starfishwp.com/reviews/
 Tags: reputation management,reviews,ratings,5-star reviews,
 Requires at least: 4.8
 Tested up to: 5.0
-Stable tag: 1.3.0
+Stable tag: 1.5.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -35,6 +35,34 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 
 == Changelog ==
+
+= 1.5.0 – 2018-06-07 =
+* Enhancements
+    * Multiple destinations! You can now add multiple destinations to each funnel. Select an icon, color options, and a name. Also select your own icon.
+    * Prevent review "gating" to comply with Google's new policy. You can now present the destination after users have provided negative feedback so they can leave a public review.
+    * Added French and Tagolog translations. Thanks to Eric Gracieta (French) and Charry Mae Yanex (Tagolog).
+* Fixes
+    * 100% now displays in a more readable way inside the graph.
+    * Updates to change "Yes" and "No" wording to "Positive" and "Negative" respectively. Makes it easier for translation and consistency.
+    * Set font weight to bold on buttons so button text is readable on themes with skinny fonts.
+    * Unescape special characters in email subject and "From" name so they stay special characters instead of being converted to HTML code equivalents.
+
+= 1.4.2 – 2018-05-13 =
+* Fixes
+    * Removed Freemius' Pricing option from sidebar.
+
+= 1.4.1 – 2018-05-11 =
+* Fixes
+    * Fixed issue with license key field not allowing old WooCommerce API-based licenses to be input properly.
+
+= 1.4.0 – 2018-05-08 =
+* Enhancements
+    * Integrated with Freemius. This new licensing and selling platform will help us innovate and add new features much more quickly going forward.
+    * Added default WP body classes and ID's added to Funnel pages so you can target funnels generally or individual funnels in your CSS.
+    * All functionality is disabled when the license is disabled, so you can now remotely remove a client's access if they cancel their agreement with you.
+* Fixes
+    * Removed body CSS being applied when using the shortcode.
+
 
 = 1.3.0 – 2018-04-12 =
 
