@@ -177,12 +177,12 @@ function srm_yes_result_build_meta_box( $post ){
 		}
 	}
 
-	if($srm_no_destination == 'single'){
-		$multi_desti_row_style = 'display: none;';
-		$single_desti_row_style = 'display: table-row;';
-	}else{
+	if($srm_no_destination == 'multiple'){
 		$multi_desti_row_style = 'display: table-row;';
 		$single_desti_row_style = 'display: none;';
+	}else{
+		$multi_desti_row_style = 'display: none;';
+		$single_desti_row_style = 'display: table-row;';
 	}
 
 	?>
