@@ -1,0 +1,712 @@
+# Translation of Starfish Reviews in German
+# This file is distributed under the same license as the Starfish Reviews package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-07-09 20:08:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.3.1\n"
+"Language: de\n"
+"Project-Id-Version: Starfish Reviews\n"
+
+#: inc/starfish-settings.php:112
+msgid "Review Message"
+msgstr "Nachricht überprüfen"
+
+#: inc/starfish-funnels.php:874
+msgid "Nonce verify failed"
+msgstr "Nonce-Überprüfung fehlgeschlagen"
+
+#: inc/starfish-funnels.php:869
+msgid "An error has occured. Your image was not added."
+msgstr "Ein Fehler ist aufgetreten. Dein Bild wurde nicht hinzugefügt."
+
+#: inc/starfish-funnels.php:847
+msgid "Image is too large. It must be less than 2M!"
+msgstr "Das Bild ist zu groß. Es muss kleiner als 2MB sein!"
+
+#: inc/starfish-funnels.php:843
+msgid "Please select an image to upload!"
+msgstr "Bitte wählen Sie ein Bild zum Hochladen!"
+
+#: inc/starfish-funnels.php:455
+msgid "Public Review Text"
+msgstr "Öffentlicher Überprüfungstext"
+
+#: inc/starfish-funnels.php:444
+msgid "Allow negative responses to proceed to review destination."
+msgstr "Lassen Sie negative Antworten zu, um das Ziel zu überprüfen."
+
+#: inc/starfish-funnels.php:442
+msgid "Disable Review Gating"
+msgstr "Disable Gating deaktivieren"
+
+#: inc/starfish-funnels.php:433
+msgid "Submit Button (Negative)"
+msgstr "Schaltfläche \"Senden\" (negativ)"
+
+#: inc/starfish-funnels.php:395 inc/starfish-funnels.php:456
+#: inc/starfish-shortcode.php:155
+msgid "Leave a Public Review"
+msgstr "Hinterlasse eine öffentliche Bewertung"
+
+#: inc/starfish-funnels.php:330
+msgid "Submit Button (Positive)"
+msgstr "Schaltfläche \"Senden\" (positiv)"
+
+#: inc/starfish-funnels.php:322
+msgid "Destination is required. Use for single and default destination."
+msgstr "Ein Ziel ist erforderlich. Verwenden Sie es für das Einzel- und Standardziel."
+
+#: inc/starfish-funnels.php:261 inc/starfish-funnels.php:309
+msgid "#000000"
+msgstr "#000000"
+
+#: inc/starfish-funnels.php:260 inc/starfish-funnels.php:310
+msgid "#ffffff"
+msgstr "#ffffff"
+
+#: inc/starfish-funnels.php:251 inc/starfish-funnels.php:300
+msgid "Upload"
+msgstr "Hochladen"
+
+#: inc/starfish-funnels.php:248 inc/starfish-funnels.php:297
+msgid "Browse..."
+msgstr "Durchsuche..."
+
+#: inc/starfish-funnels.php:245 inc/starfish-funnels.php:294
+msgid "Upload image"
+msgstr "Bild hochladen"
+
+#: inc/starfish-funnels.php:244 inc/starfish-funnels.php:293
+msgid "YouTube"
+msgstr "YouTube"
+
+#: inc/starfish-funnels.php:243 inc/starfish-funnels.php:292
+msgid "Etsy"
+msgstr "Etsy"
+
+#: inc/starfish-funnels.php:242 inc/starfish-funnels.php:291
+msgid "WordPress"
+msgstr "WordPress"
+
+#: inc/starfish-funnels.php:241 inc/starfish-funnels.php:290
+msgid "Foursquare"
+msgstr "Foursquare"
+
+#: inc/starfish-funnels.php:240 inc/starfish-funnels.php:289
+msgid "Google Play"
+msgstr "Google Play"
+
+#: inc/starfish-funnels.php:239 inc/starfish-funnels.php:288
+msgid "Apple App Store"
+msgstr "Apple App Store"
+
+#: inc/starfish-funnels.php:238 inc/starfish-funnels.php:287
+msgid "iTunes"
+msgstr "iTunes"
+
+#: inc/starfish-funnels.php:237 inc/starfish-funnels.php:286
+msgid "Audible"
+msgstr "Audible"
+
+#: inc/starfish-funnels.php:236 inc/starfish-funnels.php:285
+msgid "Amazon"
+msgstr "Amazon"
+
+#: inc/starfish-funnels.php:235 inc/starfish-funnels.php:284
+msgid "Tripadvisor"
+msgstr "Tripadvisor"
+
+#: inc/starfish-funnels.php:234 inc/starfish-funnels.php:283
+msgid "Yelp"
+msgstr "Yelp"
+
+#: inc/starfish-funnels.php:233 inc/starfish-funnels.php:282
+msgid "Facebook"
+msgstr "Facebook"
+
+#: inc/starfish-funnels.php:232 inc/starfish-funnels.php:281
+msgid "Google"
+msgstr "Google"
+
+#: inc/starfish-funnels.php:231 inc/starfish-funnels.php:280
+msgid "Select Icon"
+msgstr "Wählen Sie Symbol"
+
+#: inc/starfish-funnels.php:214 inc/starfish-reviews.php:67
+#: inc/starfish-reviews.php:82
+msgid "Destination"
+msgstr "Ziel"
+
+#: inc/starfish-funnels.php:213 inc/starfish-funnels.php:263
+#: inc/starfish-funnels.php:312
+msgid "Name"
+msgstr "Name"
+
+#: inc/starfish-funnels.php:212
+msgid "Icon-BG Color"
+msgstr "Icon-BG Farbe"
+
+#: inc/starfish-funnels.php:211
+msgid "Preview"
+msgstr "Vorschau"
+
+#: inc/starfish-funnels.php:210
+msgid "Icon"
+msgstr "Symbol"
+
+#: inc/starfish-funnels.php:207
+msgid "Set Multiple Destinations"
+msgstr "Legen Sie mehrere Ziele fest"
+
+#: inc/starfish-funnels.php:201
+msgid "Multiple"
+msgstr "Mehrere"
+
+#: inc/starfish-funnels.php:200
+msgid "Single"
+msgstr "Einzeln"
+
+#: inc/starfish-funnels.php:197
+msgid "Number of Destinations"
+msgstr "Anzahl der Ziele"
+
+#: inc/starfish-funnels.php:106
+msgid "Symbol circles"
+msgstr "Symbolkreise"
+
+#: inc/starfish-funnels.php:105
+msgid "Faces"
+msgstr "Gesichter"
+
+#: inc/starfish-funnels.php:104
+msgid "Thumbs solid"
+msgstr "Daumen fest"
+
+#: inc/starfish-funnels.php:103
+msgid "Thumbs outline"
+msgstr "Daumen entwerfen"
+
+#: inc/starfish-funnels.php:60
+msgid "Negative Response"
+msgstr "Negative Antwort"
+
+#: inc/starfish-funnels.php:59
+msgid "Positive Response"
+msgstr "Positive Antwort"
+
+#. Author URI of the plugin/theme
+msgid "https://starfishwp.com"
+msgstr "https://starfishwp.com"
+
+#. Author of the plugin/theme
+msgid "Starfish"
+msgstr "Starfish"
+
+#. Description of the plugin/theme
+msgid "Encourage your customers to leave 5-star reviews on Google, Facebook, Yellow Pages, and more. See responses, monitor your reputation rating, and create multiple funnels with Starfish, the #1 reputation management plugin for WordPress!"
+msgstr "Ermutigen Sie Ihre Kunden, 5-Sterne-Bewertungen bei Google, Facebook und mehr zu hinterlassen. Sehen Sie Antworten, überwachen Sie Ihre Reputation und erstellen Sie mehrere Funnels mit Starfish, dem Reputation Management Plugin Nr. 1 für WordPress!"
+
+#. Plugin URI of the plugin/theme
+msgid "http://starfishwp.com/reviews/"
+msgstr "http://starfishwp.com/reviews/"
+
+#. Plugin Name of the plugin/theme
+msgid "Starfish Reviews"
+msgstr "Starfish-Bewertungen"
+
+#: starfish-reviews.php:133 starfish-reviews.php:174
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: inc/starfish-shortcode.php:437 inc/starfish-shortcode.php:439
+msgid "Powered by Starfish"
+msgstr "Erstellt durch Starfish"
+
+#: inc/starfish-shortcode.php:200
+msgid "characters."
+msgstr "Zeichen."
+
+#: inc/starfish-shortcode.php:199
+msgid "You need to enter at least"
+msgstr "Sie müssen mindestens eingeben"
+
+#: inc/starfish-shortcode.php:137
+msgid "Please enter your phone number."
+msgstr "Bitte geben Sie Ihre Telefonnummer ein."
+
+#: inc/starfish-shortcode.php:136
+msgid "Your Phone"
+msgstr "Ihr Telefon"
+
+#: inc/starfish-shortcode.php:130
+msgid "Please enter your email address."
+msgstr "Geben Sie bitte Ihre Email-Adresse ein."
+
+#: inc/starfish-shortcode.php:129
+msgid "Your Email"
+msgstr "Ihre E-Mail"
+
+#: inc/starfish-shortcode.php:123
+msgid "Please enter your name."
+msgstr "Bitte geben Sie Ihren Namen ein."
+
+#: inc/starfish-shortcode.php:122
+msgid "Your Name"
+msgstr "Ihr Name"
+
+#: inc/starfish-shortcode.php:121 inc/starfish-shortcode.php:128
+#: inc/starfish-shortcode.php:135
+msgid " (Required)"
+msgstr "(Erforderlich)"
+
+#: inc/starfish-shortcode.php:115
+msgid "Leave your review."
+msgstr "Hinterlassen Sie Ihre Bewertung."
+
+#: inc/starfish-shortcode.php:6
+msgid "This funnel is not valid or published yet!"
+msgstr "Dieser Funnel ist noch nicht gültig oder veröffentlicht!"
+
+#: inc/starfish-settings.php:113
+msgid "Contents of the message. Make sure to include shortcode {review-message}. Also supports {funnel-name}, {review-id}, {reviewer-name}, {reviewer-email} and {reviewer-phone}."
+msgstr "Inhalt der Nachricht Stellen Sie sicher, dass Sie den Shortcode {review-message} angeben. Unterstützt auch {trichtername}, {review-id}, {reviewer-name}, {reviewer-email} und {reviewer-phone}."
+
+#: inc/starfish-settings.php:111
+msgid "Message Template"
+msgstr "Message Vorlage"
+
+#: inc/starfish-settings.php:108
+msgid "Subject of the email. Supports shortcode {funnel-name} and {review-id}."
+msgstr "Unterstützt den Shortcode {funnel-name} und {review-id}."
+
+#: inc/starfish-settings.php:106
+msgid "Email Subject"
+msgstr "E-Mail Betreff"
+
+#: inc/starfish-settings.php:103
+msgid "Will only be used if ID is a properly formatted email address."
+msgstr "Wird nur verwendet, wenn ID eine korrekt formatierte E-Mail-Adresse ist."
+
+#: inc/starfish-settings.php:102
+msgid "Use submitter ID as \"reply-to\" email address."
+msgstr "Verwenden Sie die Absender-ID als E-Mail-Adresse \"Antwort\"."
+
+#: inc/starfish-settings.php:99 inc/starfish-settings.php:100
+msgid "Reply To Email"
+msgstr "Antwort auf E-Mail"
+
+#: inc/starfish-settings.php:90
+msgid "Email address the message will appear to be from. Supports shortcode {admin-email} to use the site's admin email."
+msgstr "E-Mail-Adresse, von der die Nachricht angezeigt wird. Unterstützt Shortcode {admin-email}, um die Admin-E-Mail der Website zu verwenden."
+
+#: inc/starfish-settings.php:88
+msgid "From Email"
+msgstr "Von E-Mail"
+
+#: inc/starfish-settings.php:85
+msgid "The name the email will appear to be from. Supports shortcode {site-name} to use the site's name."
+msgstr "Der Name, von dem aus die E-Mail angezeigt wird. Unterstützt Shortcode {site-name}, um den Namen der Website zu verwenden."
+
+#: inc/starfish-settings.php:83
+msgid "From Name"
+msgstr "Absendername"
+
+#: inc/starfish-settings.php:79
+msgid "Email Settings"
+msgstr "E-Mail Einstellungen"
+
+#: inc/starfish-settings.php:74
+msgid "Delete all settings on deactivation. DO NOT use this option, unless you want to remove ALL Starfish Reviews settings and data."
+msgstr "Alle Einstellungen bei der Deaktivierung löschen. Verwenden Sie diese Option NICHT, es sei denn, Sie möchten ALLE Einstellungen und Daten von Starfish Bewertungen entfernen."
+
+#: inc/starfish-settings.php:71 inc/starfish-settings.php:72
+msgid "Deactivation"
+msgstr "Deaktivierung"
+
+#: inc/starfish-settings.php:62
+msgid "Override \"Powered by Starfish\" link URL with <a href=\"https://starfishwp.com/affiliate/?sub=creatives\" target=\"_blank\">your affiliate URL</a>."
+msgstr "Überschreiben Sie \"Powered by Starfish\" Link URL mit <a href=\"https://starfishwp.com/affiliate/?sub=creatives\" target=\"_blank\">Ihre Affiliate-URL</a>."
+
+#: inc/starfish-settings.php:60
+msgid "Affiliate URL"
+msgstr "Affiliate-URL"
+
+#: inc/starfish-settings.php:56
+msgid "Turn off Starfish branding on Funnel pages."
+msgstr "Deaktivieren Sie das Starfish-Branding auf den Funne-Seiten."
+
+#: inc/starfish-settings.php:53 inc/starfish-settings.php:54
+msgid "Starfish Branding"
+msgstr "Starfish-Branding"
+
+#: inc/starfish-settings.php:44
+msgid "Re-save WP Settings>Permalink if your funnel goes to a 404 page."
+msgstr "Speichern Sie WP-Einstellungen>Permalink erneut, wenn Ihr Funnel auf eine 404-Seite geht."
+
+#: inc/starfish-settings.php:42
+msgid "Review Page Slug"
+msgstr "Review Seite Slug"
+
+#: inc/starfish-settings.php:35 starfish-reviews.php:174
+msgid "Starfish Settings"
+msgstr "Starfish-Einstellungen"
+
+#: inc/starfish-settings-process.php:12
+msgid "Nonce unverified! Try again."
+msgstr "Nonce unverifiziert! Versuchen Sie es noch einmal!"
+
+#: inc/starfish-settings-process.php:6
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+#: inc/starfish-reviews.php:314 inc/starfish-reviews.php:317
+msgid "Excellent"
+msgstr "Ausgezeichnet"
+
+#: inc/starfish-reviews.php:311
+msgid "Good"
+msgstr "Gut"
+
+#: inc/starfish-reviews.php:308
+msgid "Average"
+msgstr "Durchschnittlich"
+
+#: inc/starfish-reviews.php:305
+msgid "Poor"
+msgstr "Schwach"
+
+#: inc/starfish-reviews.php:206
+msgid "Negative:"
+msgstr "Negativ:"
+
+#: inc/starfish-reviews.php:205
+msgid "Positive:"
+msgstr "Positiv:"
+
+#: inc/starfish-reviews.php:204
+msgid "Total:"
+msgstr "Gesamt:"
+
+#: inc/starfish-reviews.php:203
+msgid "Rating:"
+msgstr "Bewertung:"
+
+#: inc/starfish-reviews.php:180 inc/starfish-reviews.php:186
+msgid "Reviews"
+msgstr "Bewertungen"
+
+#: inc/starfish-reviews.php:115
+msgid "Negative"
+msgstr "Negativ"
+
+#: inc/starfish-reviews.php:113
+msgid "Positive"
+msgstr "Positiv"
+
+#: inc/starfish-reviews.php:66 inc/starfish-reviews.php:81
+msgid "Funnel"
+msgstr "Funnel"
+
+#: inc/starfish-reviews.php:65 inc/starfish-reviews.php:80
+msgid "Message"
+msgstr "Nachricht"
+
+#: inc/starfish-reviews.php:64 inc/starfish-reviews.php:79
+msgid "Feedback"
+msgstr "Feedback / Rückmeldung"
+
+#: inc/starfish-reviews.php:63 inc/starfish-reviews.php:78
+msgid "Reviewer"
+msgstr "Rezensent"
+
+#: inc/starfish-reviews.php:62 inc/starfish-reviews.php:77
+msgid "ID"
+msgstr "ID"
+
+#: inc/starfish-reviews.php:61
+msgid "Date & Time"
+msgstr "Tag & Zeit"
+
+#: inc/starfish-reviews.php:24
+msgid "No Reviews found in Trash."
+msgstr "Keine Bewertungen im Papierkorb gefunden."
+
+#: inc/starfish-reviews.php:23
+msgid "No Reviews found."
+msgstr "Keine Bewertungen gefunden."
+
+#: inc/starfish-reviews.php:22
+msgid "Parent Reviews:"
+msgstr "Zugehörige Bewertungen:"
+
+#: inc/starfish-reviews.php:21
+msgid "Search Reviews"
+msgstr "Suche Bewertung"
+
+#: inc/starfish-reviews.php:20
+msgid "All Reviews"
+msgstr "Alle Bewertungen"
+
+#: inc/starfish-reviews.php:19
+msgid "View Review"
+msgstr "Bewertung ansehen"
+
+#: inc/starfish-reviews.php:18
+msgid "Edit Review"
+msgstr "Bewertung  bearbeiten"
+
+#: inc/starfish-reviews.php:17
+msgid "New Review"
+msgstr "Neue Bewertung"
+
+#: inc/starfish-reviews.php:16
+msgid "Add New Review"
+msgstr "Neue Bewertung hinzufügen"
+
+#: inc/starfish-reviews.php:15
+msgctxt "Review"
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: inc/starfish-reviews.php:14
+msgctxt "add new on admin bar"
+msgid "Starfish Review"
+msgstr "Starfish Bewertung"
+
+#: inc/starfish-reviews.php:13
+msgctxt "admin menu"
+msgid "Starfish Reviews"
+msgstr "Starfish Bewertungen"
+
+#: inc/starfish-reviews.php:12
+msgctxt "post type singular name"
+msgid "Review"
+msgstr "Bewertung"
+
+#: inc/starfish-reviews.php:11
+msgctxt "post type general name"
+msgid "Reviews"
+msgstr "Bewertungen"
+
+#: inc/starfish-funnels.php:618
+msgid "You have the Business version of Starfish Reviews, which limits you to 6 funnels. Please <a href=\"https://starfishwp.com/shop/\" target=\"_blank\">upgrade to</a> the Webmaster license if you need more."
+msgstr "Sie haben die Business-Version von Starfish Reviews, die Sie auf 6 Funnel beschränkt. Bitte <a href=\"https://starfishwp.com/shop/\" target=\"_blank\"> auf </a> upgraden Sie auf die Webmaster-Lizenz, wenn Sie mehr benötigen."
+
+#: inc/starfish-funnels.php:610
+msgid "Review Destination URL Is Required"
+msgstr "Überprüfung der Ziel-URL ist erforderlich"
+
+#: inc/starfish-funnels.php:439
+msgid "Thank you!"
+msgstr "Vielen Dank!"
+
+#: inc/starfish-funnels.php:438
+msgid "Thank You Message"
+msgstr "Danke Nachricht"
+
+#: inc/starfish-funnels.php:429
+msgid "email address(es) to send negative feedback to. You can add comma separated multiple email addresses. Shortcode {admin-email} defaults to the email set in WP Settings>General."
+msgstr "E-Mail-Adresse(n), an die ein negatives Feedback gesendet werden soll. Sie können mehrere, durch Komma getrennte E-Mail-Adressen hinzufügen. Shortcode {admin-email} wird standardmäßig auf die E-Mail gesetzt, die in WP-Einstellungen> Allgemein festgelegt wurde."
+
+#: inc/starfish-funnels.php:429
+msgid "email address(es)"
+msgstr "E-Mail-Adresse(n)"
+
+#: inc/starfish-funnels.php:428
+msgid "Email Feedback"
+msgstr "E-Mail-Feedback"
+
+#: inc/starfish-funnels.php:423
+msgid "Ask for phone?"
+msgstr "Nach der Telefonnummer fragen?"
+
+#: inc/starfish-funnels.php:421
+msgid "Reviewer Phone"
+msgstr "Telefon des bewertenden"
+
+#: inc/starfish-funnels.php:416
+msgid "Ask for email?"
+msgstr "Nach der E-Mail-Adresse fragen?"
+
+#: inc/starfish-funnels.php:414
+msgid "Reviewer Email"
+msgstr "E-Mail-Adresse des bewertenden"
+
+#: inc/starfish-funnels.php:410 inc/starfish-funnels.php:417
+#: inc/starfish-funnels.php:424
+msgid "Required?"
+msgstr "Erforderlich?"
+
+#: inc/starfish-funnels.php:409
+msgid "Ask for name?"
+msgstr "Nach dem Namen fragen?"
+
+#: inc/starfish-funnels.php:407
+msgid "Reviewer Name"
+msgstr "Name des bewerrenden"
+
+#: inc/starfish-funnels.php:327
+msgid "Auto-forward to destination URL after X number of seconds. 0 for disable."
+msgstr "Automatische Weiterleitung an die Ziel-URL nach X Sekunden. 0 für Deaktivierung."
+
+#: inc/starfish-funnels.php:325
+msgid "Auto Redirect (seconds)"
+msgstr "Automatische Weiterleitung (Sekunden)"
+
+#: inc/starfish-funnels.php:264 inc/starfish-funnels.php:313
+#: inc/starfish-funnels.php:321
+msgid "Review URL"
+msgstr "URL überprüfen"
+
+#: inc/starfish-funnels.php:320
+msgid "Review Destination<sup>*</sup>"
+msgstr "Überprüfen Sie das Ziel <sup>*</sup>"
+
+#: inc/starfish-funnels.php:194
+msgid "Accepts HTML"
+msgstr "Akzeptiert HTML"
+
+#: inc/starfish-funnels.php:193
+msgid "Excellent! Please rate us 5-stars."
+msgstr "Ausgezeichnet! Bitte bewerten Sie uns mit 5 Sternen."
+
+#: inc/starfish-funnels.php:192 inc/starfish-funnels.php:403
+msgid "Review Prompt"
+msgstr "Review-Eingabeaufforderung"
+
+#: inc/starfish-funnels.php:130
+msgid "Funnel Shortcode"
+msgstr "Funnel-Shortcode"
+
+#: inc/starfish-funnels.php:100
+msgid "Answer Buttons Style"
+msgstr "Antwort Tasten Stil"
+
+#: inc/starfish-funnels.php:97
+msgid "Shortcode {site-name} uses the site name as set in WP Settings>General."
+msgstr "Shortcode {site-name} verwendet den Site-Namen wie in den WP-Einstellungen> Allgemein festgelegt."
+
+#: inc/starfish-funnels.php:96
+msgid "Would you recommend {WP site name here}?"
+msgstr "Würden Sie {WP-Site-Name hier} weiterempfehlen?"
+
+#: inc/starfish-funnels.php:95
+msgid "Yes/No Question"
+msgstr "Ja/Nein Frage"
+
+#: inc/starfish-funnels.php:58
+msgid "Funnel Settings"
+msgstr "Funnel-Einstellungen"
+
+#: inc/starfish-funnels.php:33 inc/starfish-reviews.php:29
+msgid "Description."
+msgstr "Beschreibung."
+
+#: inc/starfish-funnels.php:28
+msgid "No Funnels found in Trash."
+msgstr "Keine Funnels im Papierkorb gefunden."
+
+#: inc/starfish-funnels.php:27
+msgid "No Funnels found."
+msgstr "Keine Funnels gefunden."
+
+#: inc/starfish-funnels.php:26
+msgid "Parent Funnels:"
+msgstr "Eltern-Funnl:l"
+
+#: inc/starfish-funnels.php:25
+msgid "Search Funnels"
+msgstr "Funnels durchsuchen"
+
+#: inc/starfish-funnels.php:24 inc/starfish-reviews.php:340
+msgid "All Funnels"
+msgstr "Alle Funnels"
+
+#: inc/starfish-funnels.php:23
+msgid "View Funnel"
+msgstr "Funnel anzeigen"
+
+#: inc/starfish-funnels.php:22
+msgid "Use as Funnel Logo"
+msgstr "Verwenden Sie es als Funnel-Logo"
+
+#: inc/starfish-funnels.php:21
+msgid "Remove Funnel Logo"
+msgstr "Entfernen Sie das Funnel-Logo"
+
+#: inc/starfish-funnels.php:20
+msgid "Set Funnel Logo"
+msgstr "Stellen Sie Funnel-Logo ein"
+
+#: inc/starfish-funnels.php:19
+msgid "Funnel Logo"
+msgstr "Funnel-Logo"
+
+#: inc/starfish-funnels.php:18
+msgid "Edit Funnel"
+msgstr "Funnel bearbeiten"
+
+#: inc/starfish-funnels.php:17
+msgid "New Funnel"
+msgstr "Neuen Funnel"
+
+#: inc/starfish-funnels.php:16
+msgid "Add New Funnel"
+msgstr "Neuen Funnel hinzufügen"
+
+#: inc/starfish-funnels.php:15
+msgctxt "Funnel"
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: inc/starfish-funnels.php:14
+msgctxt "add new on admin bar"
+msgid "Funnel"
+msgstr "Funnel"
+
+#: inc/starfish-funnels.php:13
+msgctxt "admin menu"
+msgid "Funnels"
+msgstr "Funnels"
+
+#: inc/starfish-funnels.php:12
+msgctxt "post type singular name"
+msgid "Funnel"
+msgstr "Funnel"
+
+#: inc/starfish-funnels.php:11
+msgctxt "post type general name"
+msgid "Funnels"
+msgstr "Funnels"
+
+#: inc/default-settings.php:21
+msgid "Feedback from {funnel-name}"
+msgstr "Rückmeldung von {Funnel-Name}"
+
+#: inc/default-settings.php:16
+msgid "Thanks for your feedback. We'll review it and work to improve."
+msgstr "Vielen Dank für Ihr Feedback. Wir werden es überprüfen und daran arbeiten, uns zu verbessern."
+
+#: inc/default-settings.php:14 inc/starfish-funnels.php:404
+msgid "We're sorry we didn't meet expectations. How can we do better in the future?"
+msgstr "Es tut uns leid, dass wir die Erwartungen nicht erfüllt haben. Wie können wir in Zukunft besser werden?"
+
+#: inc/default-settings.php:12
+msgid "<h3>Excellent! Please Rate us 5-stars</h3>...and leave a helpful review."
+msgstr "<h3>Hervorragend! Bitte bewerten Sie uns mit 5-Sternen</h3>...und hinterlassen Sie eine hilfreiche Bewertung."
+
+#: inc/default-settings.php:10 inc/starfish-funnels.php:434
+msgid "Send Feedback"
+msgstr "Feedback abschicken"
+
+#: inc/default-settings.php:8 inc/starfish-funnels.php:331
+msgid "Submit Review"
+msgstr "Bewertung absenden"
+
+#: inc/default-settings.php:6
+msgid "Would you recommend {site-name}?"
+msgstr "Würden Sie {site-name} weiterempfehlen?"
