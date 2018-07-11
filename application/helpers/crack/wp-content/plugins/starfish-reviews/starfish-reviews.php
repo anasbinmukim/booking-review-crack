@@ -92,6 +92,7 @@ class StarfishRM{
 
 		starfish_fs()->add_filter( 'license_key', array( $this, 'starfish_wc_license_key_filter' ) );
 		starfish_fs()->add_filter( 'license_key_maxlength', array( $this, 'starfish_wc_license_key_maxlength_filter' ) );
+    starfish_fs()->add_filter( 'hide_license_key', '__return_true' );
 
 		//Starfish Misc Functions
 		require_once('inc/starfish-misc-functions.php');
