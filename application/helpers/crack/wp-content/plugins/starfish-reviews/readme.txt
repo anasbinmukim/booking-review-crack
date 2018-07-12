@@ -36,6 +36,15 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 == Changelog ==
 
+= 1.5.2 – 2018-07-11 =
+* Enhancements
+    * Hide the license key fields after activation. This way clients can't find your license key.
+    * Added German (thanks Dennis Klinger) translation.
+    * Added .mo translation files for all included languages.
+* Fixes
+    * Correct filename formats for translation .po files. Included translations work now!
+
+
 = 1.5.1 – 2018-06-08 =
 * Fixes
     * Small fixing in Funnel Edit page Single and Multiple Destination fields toggle.
