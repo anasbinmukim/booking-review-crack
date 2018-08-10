@@ -111,3 +111,36 @@ function starfish_get_icon_color($icon_type){
   return $icon_color;
 
 }
+
+
+function starfish_add_beacon_help_scout_button(){
+  ?>
+  <script type="text/javascript">!function(e,t,n){function a(){var e=t.getElementsByTagName("script")[0],n=t.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://beacon-v2.helpscout.net",e.parentNode.insertBefore(n,e)}if(e.Beacon=n=function(t,n,a){e.Beacon.readyQueue.push({method:t,options:n,data:a})},n.readyQueue=[],"complete"===t.readyState)return a();e.attachEvent?e.attachEvent("onload",a):e.addEventListener("load",a,!1)}(window,document,window.Beacon||function(){});</script>
+  <script>window.Beacon('init', '392c4337-1f73-4e52-84e9-d226d7d3a21d')</script>
+  <?php
+  if ( starfish_fs()->can_use_premium_code() ){
+  global $starfish_fs;
+  $fs_user = $starfish_fs->get_user();
+  $fs_name = $fs_user->get_name();
+  $fs_email = $fs_user->email;
+  ?>
+  <script>
+  Beacon("identify", {
+    name: "<?php echo esc_attr($fs_name); ?>",
+    email: "<?php echo esc_attr($fs_email); ?>"
+  });
+  Beacon('prefill', {
+    subject: 'Starfish Contact From Plugin Admin Page'
+  })
+  </script>
+  <?php }
+}
+
+add_action('admin_footer', 'starfish_add_admin_footer_script');
+function starfish_add_admin_footer_script() {
+  global $pagenow;
+  if ( (isset($_GET['post_type']) && (('starfish_review' === $_GET['post_type']) || ('funnel' === $_GET['post_type'])))  || ('post.php' === $pagenow && isset($_GET['post']) && ('funnel' === get_post_type( $_GET['post']) )) ){
+      starfish_add_beacon_help_scout_button();
+  }
+
+}

@@ -1,6 +1,6 @@
 === Starfish Reviews ===
 Contributors: starfishwp, anasbinmukim, thefiddler
-Donate link: https://starfishwp.com/reviews/
+Donate link: https://starfish.reviews
 Tags: reputation management,reviews,ratings,5-star reviews,
 Requires at least: 4.8
 Tested up to: 5.0
@@ -23,7 +23,7 @@ If people are not so happy with your product, service, media, etc, they'll be as
 
 == Installation ==
 
-[See Starfish Documentation](https://docs.starfishwp.com/article/4-how-to-install-starfish-reviews)
+[See Starfish Documentation](https://docs.starfish.reviews/article/4-how-to-install-starfish-reviews)
 
 == Frequently Asked Questions ==
 
@@ -36,6 +36,13 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 == Changelog ==
 
+= 1.6 – 2018-08-10 =
+* Enhancements
+    * Integrate Help Scout's Beacon 2.0, so you can now look at our growing documentation and open a ticket, from the button floating in the bottom-left corner of all Starfish Reviews settings screens
+    * Removed "Contact Us" page since you can now do it through Beacon.
+* Fixes
+    * Updated to the latest version of the Freemius SDK.
+
 = 1.5.2 – 2018-07-11 =
 * Enhancements
     * Hide the license key fields after activation. This way clients can't find your license key.
@@ -43,7 +50,6 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
     * Added .mo translation files for all included languages.
 * Fixes
     * Correct filename formats for translation .po files. Included translations work now!
-
 
 = 1.5.1 – 2018-06-08 =
 * Fixes
@@ -53,7 +59,7 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 * Enhancements
     * Multiple destinations! You can now add multiple destinations to each funnel. Select an icon, color options, and a name. Also select your own icon.
     * Prevent review "gating" to comply with Google's new policy. You can now present the destination after users have provided negative feedback so they can leave a public review.
-    * Added French and Tagolog translations. Thanks to Eric Gracieta (French) and Charry Mae Yanex (Tagolog).
+    * Added French and Tagolog translations. Thanks to Eric Gracieta (French), Charry Mae Yanex (Tagolog), and Hannu Jaatinen (Finnish).
 * Fixes
     * 100% now displays in a more readable way inside the graph.
     * Updates to change "Yes" and "No" wording to "Positive" and "Negative" respectively. Makes it easier for translation and consistency.
