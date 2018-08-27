@@ -511,7 +511,7 @@ function srm_funnel_yes_result_save_meta_box_data( $post_id ){
 	}
 	// store custom fields values
 	if ( isset( $_REQUEST['srm_review_destination'] ) ) {
-		update_post_meta( $post_id, '_srm_review_destination', sanitize_text_field( $_POST['srm_review_destination'] ) );
+		update_post_meta( $post_id, '_srm_review_destination', esc_url( $_POST['srm_review_destination'] ) );
 	}
 
 	// store custom fields values

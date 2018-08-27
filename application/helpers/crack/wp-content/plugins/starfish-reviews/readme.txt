@@ -36,6 +36,10 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 == Changelog ==
 
+= 1.6.1 – 2018-08-27 =
+* Fixes
+    * Fix single funnel review destination field in settings
+
 = 1.6 – 2018-08-10 =
 * Enhancements
     * Integrate Help Scout's Beacon 2.0, so you can now look at our growing documentation and open a ticket, from the button floating in the bottom-left corner of all Starfish Reviews settings screens
