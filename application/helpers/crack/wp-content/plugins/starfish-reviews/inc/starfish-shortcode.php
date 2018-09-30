@@ -1,6 +1,8 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 <?php
 wp_enqueue_style('srm-review-front');
+$direct_feedback_type = '';
+if(isset($_GET['feedback'])){ $direct_feedback_type = esc_html($_GET['feedback']); }
 $funnel_id = $funnel;
 if(!get_post_status( $funnel_id )){
 	echo __( 'This funnel is not valid or published yet!', 'starfish' );
@@ -60,11 +62,41 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 	}
 
 	$srm_no_thank_you_msg = esc_html(get_post_meta( $funnel_id, '_srm_no_thank_you_msg', true ));
+
+	$current_yes_no_value = '';
+	if($direct_feedback_type != ''){
+		$custom_css = '';
+		$custom_css .= '<style>';
+		$custom_css .= '.question_heading,.yes-no-checked{display:none;}';
+
+		if($direct_feedback_type == 'p'){
+			$custom_css .= '#review_no_section{display:none;}';
+			$custom_css .= '#review_yes_section{display:block;}';
+			$custom_css .= '#submit_review{display:inline-block;}';
+			$current_yes_no_value = 'Yes';
+		}
+		if(($direct_feedback_type == 'p') && ($funnel_desti_type == 'single')){
+			$custom_css .= '#submit_review{display:inline-block;}';
+		}
+		if(($direct_feedback_type == 'p') && ($funnel_desti_type == 'multiple')){
+			$custom_css .= '#submit_review{display:none;}';
+		}
+		if($direct_feedback_type == 'n'){
+			$custom_css .= '#review_yes_section{display:none;}';
+			$custom_css .= '#review_no_section{display:block;}';
+			$custom_css .= '#submit_review{display:inline-block;}';
+			$current_yes_no_value = 'No';
+		}
+
+		$custom_css .= '</style>';
+
+		echo $custom_css;
+	}
 ?>
 <div class="review_submit_form_field">
 	<div class="yes-no-checked" id="yes-no-checked">
-			<div class="radio_item radio_item_yes"><input type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_yes" value="Yes"> <label for="srm_review_yes"><?php echo $lebel_yes; ?></label></div>
-			<div class="radio_item radio_item_no"><input type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_no" value="No"> <label for="srm_review_no"><?php echo $lebel_no; ?></label></div>
+			<div class="radio_item radio_item_yes"><input <?php checked( $current_yes_no_value, 'Yes' ); ?> type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_yes" value="Yes"> <label for="srm_review_yes"><?php echo $lebel_yes; ?></label></div>
+			<div class="radio_item radio_item_no"><input <?php checked( $current_yes_no_value, 'No' ); ?> type="radio" name="yes_no_flag" class="srm-radio" id="srm_review_no" value="No"> <label for="srm_review_no"><?php echo $lebel_no; ?></label></div>
 	</div>
 	<div class="review_yes_section review_yes_no_section" id="review_yes_section">
 		<div class="yes-prompt-text">
@@ -444,7 +476,7 @@ if(get_post_meta( $funnel_id, '_srm_button_text_no', true ) != ''){
 	if(get_option('srm_affiliate_url') != ''){
 		$srm_affiliate_url = esc_url(get_option('srm_affiliate_url'));
 	}else{
-		$srm_affiliate_url = 'https://starfishwp.com';
+		$srm_affiliate_url = 'https://starfish.reviews/';
 	}
 ?>
 <div id="srm_powred_by_txt" class="srm-powered-by"><a href="<?php echo $srm_affiliate_url; ?>" target="_blank"><?php echo $srm_affiliate_text; ?></a></div><!-- srm-powered-by -->

@@ -207,6 +207,7 @@ function srm_yes_result_build_meta_box( $post ){
 				<strong><?php echo esc_html__( 'Set Multiple Destinations', 'starfish' ); ?></strong>
 				<table class="mulit_desti_row_section">
 				<tr>
+						<th></th>
 						<th><?php echo esc_html__( 'Icon', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Preview', 'starfish' ); ?></th>
 						<th><?php echo esc_html__( 'Icon-BG Color', 'starfish' ); ?></th>
@@ -226,6 +227,7 @@ function srm_yes_result_build_meta_box( $post ){
 								$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
 							?>
 							<tr class="mulit_desti_row">
+								<td class="reorder-icon"><span class="faicon-reorder fas fa-arrows-alt"></span></td>
 								<td>
 									<select name="desti_icon[]" class="desti_icon">
 											<option value=""><?php echo esc_html__( 'Select Icon', 'starfish' ); ?></option>
@@ -275,6 +277,7 @@ function srm_yes_result_build_meta_box( $post ){
 					$srm_desti_url = '';
 				?>
 				<tr class="mulit_desti_row">
+					<td class="reorder-icon"><span class="faicon-reorder fas fa-arrows-alt"></span></td>
 					<td>
 						<select name="desti_icon[]" class="desti_icon">
 								<option value=""><?php echo esc_html__( 'Select Icon', 'starfish' ); ?></option>

@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Starfish Reviews
-Plugin URI: http://starfishwp.com/reviews/
+Plugin URI: https://starfish.reviews/
 Description: Encourage your customers to leave 5-star reviews on Google, Facebook, Yellow Pages, and more. See responses, monitor your reputation rating, and create multiple funnels with Starfish, the #1 reputation management plugin for WordPress!
 Author: Starfish
-Version: 1.6.1
-Author URI: https://starfishwp.com
+Version: 1.7.0
+Author URI: https://starfish.reviews/
 Copyright: © 2017 - 2018 Starfish.
 License:     GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -62,7 +62,7 @@ class StarfishRM{
 	 * Constructor
 	 */
 	public function __construct() {
-		define( 'SRM_VERSION', '1.6.1' );
+		define( 'SRM_VERSION', '1.7.0' );
 		//WooCommerce variation product id for business subscription
 		define( 'SRM_BUSINESS_PLAN', 'business' );
 		//WooCommerce variation product id for web master subscription
@@ -94,6 +94,7 @@ class StarfishRM{
 		starfish_fs()->add_filter( 'license_key', array( $this, 'starfish_wc_license_key_filter' ) );
 		starfish_fs()->add_filter( 'license_key_maxlength', array( $this, 'starfish_wc_license_key_maxlength_filter' ) );
     starfish_fs()->add_filter( 'hide_license_key', '__return_true' );
+    starfish_fs()->add_filter( 'permissions_list', array( $this, 'add_helpscount_permission' ) );
 
 		//Starfish Misc Functions
 		require_once('inc/starfish-misc-functions.php');
@@ -123,6 +124,15 @@ class StarfishRM{
 
   public function starfish_wc_license_key_maxlength_filter($maxlength) {
       return 38;
+  }
+
+  public function add_helpscount_permission( $permissions ) {
+    $permissions['helpscout'] = array(
+      'icon-class' => 'dashicons dashicons-testimonial',
+      'label'      => starfish_fs()->get_text_inline( 'Help Scout', 'helpscout' ),
+      'desc'       => starfish_fs()->get_text_inline( 'Rendering Help Scout\'s beacon for easy support access', 'permissions-helpscout' ),
+      'priority'   => 16,
+    );
   }
 
 	/**

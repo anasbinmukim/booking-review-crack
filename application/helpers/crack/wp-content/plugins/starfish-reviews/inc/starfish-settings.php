@@ -29,6 +29,7 @@ if ( isset($_POST['srm_settings_nonce']) && (! isset( $_POST['srm_settings_nonce
        update_option('srm_email_subject', sanitize_text_field(stripslashes($_POST['srm_email_subject'])));
        update_option('srm_email_template', wp_kses_post($_POST['srm_email_template']));
        starfish_notice_data_successfully_saved();
+       flush_rewrite_rules();
    }
 }
 ?>
