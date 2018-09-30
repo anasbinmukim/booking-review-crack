@@ -261,7 +261,7 @@ add_filter( 'views_edit-starfish_review', function( $views ){
 		if( ((isset($post)) && ($post->post_type == 'funnel') && ($pagenow == 'post.php')) || (isset($_GET['post_type']) && ( $_GET['post_type'] == 'funnel')) ) {
 				 wp_enqueue_style(  'review_admin', SRM_PLUGIN_URL.'/css/reviews-admin.css' );
 				 wp_enqueue_script(  'review_admin_js', SRM_PLUGIN_URL.'/js/review-backend.js' );
-				 wp_enqueue_style(  'fontawesome', SRM_PLUGIN_URL.'/css/fontawesome-all.min.css' );
+				 wp_enqueue_style(  'fontawesome-v5', SRM_PLUGIN_URL.'/css/fontawesome-all.min.css' );
 		 }
 }
 add_action( 'admin_enqueue_scripts', 'srm_add_admin_review_listpage_script', 10, 1 );
@@ -275,7 +275,7 @@ function srm_front_end_review_script() {
 					wp_enqueue_script( 'jquery' );
 			}
 			wp_enqueue_style('srm-review-front');
-			wp_enqueue_style(  'fontawesome', SRM_PLUGIN_URL.'/css/fontawesome-all.min.css' );
+			wp_enqueue_style(  'fontawesome-v5', SRM_PLUGIN_URL.'/css/fontawesome-all.min.css' );
 	}
 
 	/******Inline style manager*******/
