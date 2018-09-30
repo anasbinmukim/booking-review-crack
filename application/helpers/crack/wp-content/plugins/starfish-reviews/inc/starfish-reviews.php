@@ -149,6 +149,72 @@ function srm_starfish_review_column_register_sortable($columns){
 add_filter('manage_edit-starfish_review_sortable_columns','srm_starfish_review_column_register_sortable');
 
 
+/**
+ * Add meta box
+ *
+ * @param post $post The post object
+ * @link https://codex.wordpress.org/Plugin_API/Action_Reference/add_meta_boxes
+ */
+function srm_starfish_review_meta_boxes( $post ){
+	add_meta_box( 'review_settings_meta_box', esc_html__( 'Review Settings', 'starfish' ), 'srm_review_settings_build_meta_box', 'starfish_review', 'normal', 'default' );
+}
+add_action( 'add_meta_boxes_starfish_review', 'srm_starfish_review_meta_boxes' );
+
+/**
+ * Build custom field meta box
+ *
+ * @param post $post The post object
+ */
+function srm_review_settings_build_meta_box( $post ){
+	// make sure the form request comes from WordPress
+	wp_nonce_field( basename( __FILE__ ), 'review_settings_meta_box_nonce' );
+	if(isset($_GET['post']) && ($_GET['action'] == 'edit')){
+		// retrieve the current value
+		$srm_desti_name = esc_html(get_post_meta( $post->ID, '_srm_desti_name', true ));
+	}
+	?>
+	<div class='inside'>
+		<table class="form-table">
+		<tr>
+		<th scope="row"><label for="srm_desti_name"><?php echo esc_html__( 'Destination Name', 'starfish' ); ?></label></th>
+		<td><input type="text" class="regular-text" name="srm_desti_name" id="srm_desti_name" value="<?php echo $srm_desti_name; ?>">
+		</td>
+		</tr>
+		</table>
+	</div>
+	<?php
+}
+
+
+/**
+ * Store custom field meta box data
+ *
+ * @param int $post_id The post ID.
+ * @link https://codex.wordpress.org/Plugin_API/Action_Reference/save_post
+ */
+function srm_starfish_review_sttings_save_meta_box_data( $post_id ){
+	// verify meta box nonce
+	if ( !isset( $_POST['review_settings_meta_box_nonce'] ) || !wp_verify_nonce( $_POST['review_settings_meta_box_nonce'], basename( __FILE__ ) ) ){
+		return;
+	}
+	// return if autosave
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ){
+		return;
+	}
+  // Check the user's permissions.
+	if ( ! current_user_can( 'edit_post', $post_id ) ){
+		return;
+	}
+	// store custom fields values
+	if ( isset( $_REQUEST['srm_desti_name'] ) ) {
+		update_post_meta( $post_id, '_srm_desti_name', sanitize_text_field( $_POST['srm_desti_name'] ) );
+	}
+
+}
+add_action( 'save_post_starfish_review', 'srm_starfish_review_sttings_save_meta_box_data' );
+
+
+
 function srm_starfish_review_add_top_review_graph() {
     global $pagenow, $post;
 				?>
@@ -158,6 +224,7 @@ function srm_starfish_review_add_top_review_graph() {
 				</style>
 				<?php
 				$total_review = $negative_review = $positive_review = 0;
+				$total_destination = array();
 				$srm_review_args = array( 'post_type' => 'starfish_review', 'posts_per_page' => '-1');
 				$srm_review_query = new WP_Query( $srm_review_args );
 				if ( $srm_review_query->have_posts() ) {
@@ -167,12 +234,28 @@ function srm_starfish_review_add_top_review_graph() {
 							$feedback = get_post_meta($review_id, '_srm_feedback', true);
 							if($feedback == 'Yes'){
 									$positive_review += 1;
+
+									if(get_post_meta($review_id, '_srm_desti_type', true) == 'single'){
+											$destination_url = get_post_meta($review_id, '_srm_destination_url', true);
+											$total_destination[] = starfish_get_name_from_destination_url($destination_url);
+									}
+									if(get_post_meta($review_id, '_srm_desti_type', true) == 'multiple'){
+											$total_destination[] = get_post_meta($review_id, '_srm_desti_name', true);
+									}
+
+
 							}else{
 								$negative_review += 1;
 							}
 							$total_review += 1;
+
 						}
 						wp_reset_postdata();
+				}
+
+				$total_destination_count = array();
+				if(is_array($total_destination) && (count($total_destination) > 0)){
+						$total_destination_count = array_count_values($total_destination);
 				}
 
 				if($total_review <= 0){
@@ -205,13 +288,19 @@ function srm_starfish_review_add_top_review_graph() {
 										<div id="positive_feedback"><span class="srm_admin_label"><?php echo esc_html__( 'Positive:', 'starfish' ); ?></span> <span class="srm_number srm_number_postitive"><?php echo $positive_review; ?></span></div>
 										<div id="negative_feedback"><span class="srm_admin_label"><?php echo esc_html__( 'Negative:', 'starfish' ); ?></span> <span class="srm_number srm_number_negative"><?php echo $negative_review; ?></span></div>
 								</div><!-- srm_review_rating -->
+								<style>
+									#piechart{ float: left; }
+									#piechart_destination{ float: left; }
+								</style>
 								<div class="srm_review_chart" id="srm_review_chart">
 									<div id="piechart"></div>
+									<div id="piechart_destination"></div>
 
 									<script type="text/javascript">
 									// Load google charts
 									google.charts.load('current', {'packages':['corechart']});
 									google.charts.setOnLoadCallback(drawChart);
+									google.charts.setOnLoadCallback(drawDestinationChart);
 
 									// Draw the chart and set the chart values
 									function drawChart() {
@@ -221,8 +310,6 @@ function srm_starfish_review_add_top_review_graph() {
 										['Negative', <?php echo $negative_review; ?>]
 									]);
 
-
-
 										// Optional; add a title and set the width and height of the chart
 										//var options = {'title':'', 'pieHole': 0.4, 'titleTextStyle': {'color':'#000000'},  'backgroundColor':'#f1f1f1', 'colors':['#7ed026','#e96e48'], 'legend' : {'position':'right', 'alignment':'center'}, 'width':280, 'height':250, 'chartArea':{ 'left':20, 'top':0, 'width':'100%', 'height':'100%'}};
 										var options = {'title':'', 'pieHole': 0.4, 'pieSliceTextStyle': { 'color': '<?php echo $parcent_color; ?>', }, 'backgroundColor':'#f1f1f1', 'colors':['#7ed026','#e96e48'], 'legend' : {'position':'right', 'alignment':'center'}, 'width':280, 'height':250, 'chartArea':{ 'left':20, 'top':0, 'width':'100%', 'height':'100%'}};
@@ -230,7 +317,27 @@ function srm_starfish_review_add_top_review_graph() {
 										// Display the chart inside the <div> element with id="piechart"
 										var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 										chart.draw(data, options);
+
 									}
+
+									// Draw the chart and set the chart values
+									function drawDestinationChart() {
+										var data = google.visualization.arrayToDataTable([
+										['Task', 'Review Destination'],
+										<?php
+										foreach ($total_destination_count as $desti_name => $desti_count) {
+											// code...
+											echo "['".$desti_name."', $desti_count],";
+										}
+										?>
+									]);
+										// Optional; add a title and set the width and height of the chart
+										var options = {'title':'', 'pieHole': 0.4, 'pieSliceTextStyle': { 'color': '<?php echo $parcent_color; ?>', }, 'backgroundColor':'#f1f1f1', 'colors':['#dd4b39','#3b5998','#af0606','#00af87','#ff9900','#f7991c','#333333','#34C5F9','#fbbc05','#f94877','#21759b','#d5641c','#ff0000'], 'legend' : {'position':'right', 'alignment':'center'}, 'width':280, 'height':250, 'chartArea':{ 'left':20, 'top':0, 'width':'100%', 'height':'100%'}};
+
+										var chart_destination = new google.visualization.PieChart(document.getElementById('piechart_destination'));
+										chart_destination.draw(data, options);
+									}
+
 									</script>
 								</div><!-- srm_review_rating -->
 							</div><!-- srm_review_chart_wrap -->

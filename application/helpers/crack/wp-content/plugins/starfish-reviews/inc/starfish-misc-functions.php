@@ -61,6 +61,63 @@ function starfish_get_destination_icon($icon_type, $photo_id = '', $display = 'a
 }
 
 
+function starfish_get_name_from_destination_url($url){
+  $destination_domain = '';
+
+  if($url_data = parse_url($url)){
+    if(isset($url_data['host'])){
+        $destination_domain = str_replace('www.', '', $url_data['host']);
+    }
+  }
+
+  switch ($destination_domain) {
+    case "google.com":
+        $desti_name = 'Google';
+        break;
+    case "facebook.com":
+        $desti_name = 'Facebook';
+        break;
+    case "yelp.com":
+        $desti_name = 'Yelp';
+        break;
+    case "tripadvisor.com":
+        $desti_name = 'Tripadvisor';
+        break;
+    case "amazon.com":
+        $desti_name = 'Amazon';
+        break;
+    case "audible.com":
+        $desti_name = 'Audible';
+        break;
+    case "itunes.com":
+        $desti_name = 'iTunes';
+        break;
+    case "apple.com":
+        $desti_name = 'AppleAppStore';
+        break;
+    case "support.google.com":
+        $desti_name = 'GooglePlay';
+        break;
+    case "foursquare.com":
+        $desti_name = 'Foursquare';
+        break;
+    case "wordpress.org":
+        $desti_name = 'WordPress';
+        break;
+    case "etsy.com":
+        $desti_name = 'Etsy';
+        break;
+    case "youtube.com":
+        $desti_name = 'YouTube';
+        break;
+    default:
+        $desti_name = 'Others';
+  }
+
+  return $desti_name;
+
+}
+
 function starfish_get_icon_color($icon_type){
   $icon_color = '';
 
