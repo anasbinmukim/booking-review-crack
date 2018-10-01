@@ -250,17 +250,21 @@ function srm_yes_result_build_meta_box( $post ){
 										<label class="btn_icon_upload"> <?php echo esc_html__( 'Browse...', 'starfish' ); ?>
 											<input type="file" name="photoupload[]" class="photoupload"  accept=".png, .jpg, .jpeg, .gif">
 										</label>
-										<a href="javascript:void(0)" class="btn-upload-photo"> <?php echo esc_html__( 'Upload', 'starfish' ); ?></a>
-										<span class="status"></span>
 										<input type="hidden" class="icon_photo" name="icon_photo[]" value="">
 										<input type="hidden" class="icon_photo_id" name="icon_photo_id[]" value="<?php echo $icon_photo_id; ?>">
 										<div class="existing_photo"></div>
 									</div>
 								</td>
+								<?php
+									$color_field_disabled = '';
+									if($srm_destination_icon == 'Uploadimage'){
+										$color_field_disabled = 'disabled="disabled"';
+									}
+								?>
 								<td class="mtd_icon_preview"><?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id); ?></td>
 								<td class="td-color-field">
-									 <input type="text" class="medium-text color-field" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
-									 <input type="text" class="medium-text color-field" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
+									 <input <?php echo $color_field_disabled; ?> type="text" class="medium-text color-field" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
+									 <input <?php echo $color_field_disabled; ?> type="text" class="medium-text color-field" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
 								</td>
 								<td><input type="text" class="medium-text" name="srm_desti_name[]" value="<?php echo $srm_desti_name; ?>" placeholder="<?php echo esc_html__( 'Name', 'starfish' ); ?>"></td>
 								<td><input type="text" class="medium-text" name="srm_desti_url[]" value="<?php echo $srm_desti_url; ?>" placeholder="<?php echo esc_html__( 'Review URL', 'starfish' ); ?>"></td>
@@ -300,8 +304,6 @@ function srm_yes_result_build_meta_box( $post ){
 							<label class="btn_icon_upload"> <?php echo esc_html__( 'Browse...', 'starfish' ); ?>
 								<input type="file" name="photoupload[]" class="photoupload"  accept=".png, .jpg, .jpeg, .gif">
 							</label>
-							<a href="javascript:void(0)" class="btn-upload-photo"> <?php echo esc_html__( 'Upload', 'starfish' ); ?></a>
-							<span class="status"></span>
 							<input type="hidden" class="icon_photo" name="icon_photo[]" value="">
 							<input type="hidden" class="icon_photo_id" name="icon_photo_id[]" value="">
 							<div class="existing_photo"></div>

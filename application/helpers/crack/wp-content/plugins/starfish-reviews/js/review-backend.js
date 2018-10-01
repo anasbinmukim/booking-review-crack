@@ -112,61 +112,28 @@ jQuery(document).ready(function($) {
 
   $('.mulit_desti_row_section tbody').sortable();
 
-  $(document).on('click', '.btn-upload-photo', function(e){
-    e.preventDefault();
-    var val_nonce = $(this).closest(".mulit_desti_row_section").find("input[name='image_upload_nonce']").val();
-    //var $this = $(this),
-      var $this = $(this).closest(".mulit_desti_row"),
-      nonce = val_nonce,
-      images_wrap = $this.find('.mtd_icon_preview'),
-      set_url_value = $this.find('.icon_photo'),
-      set_id_value = $this.find('.icon_photo_id'),
-      status = $this.find('.status'),
-      formdata = false;
+});
 
-    if ( $this.find('.photoupload').val() == '' ) {
-      alert('Please select an image to upload');
-      return;
-    }
-
-    status.fadeIn().text('Uploading...');
-
-    if (window.FormData) {
-      formdata = new FormData();
-    }
-    var files_data = $this.find('.photoupload');
-
-    $.each($(files_data), function(i, obj) {
-      $.each(obj.files, function(j, file) {
-        formdata.append('files[' + j + ']', file);
-      })
-    });
-    // our AJAX identifier
-    formdata.append('action', 'starfish_upload_images');
-
-    formdata.append('nonce', nonce);
-
-    $.ajax({
-      url: ajaxurl,
-      type: 'POST',
-      data: formdata,
-      dataType: 'json',
-      processData: false,
-      contentType: false,
-      success: function(data) {
-        if (data.status) {
-          images_wrap.append(data.message);
-          set_url_value.val(data.photo_url);
-          set_id_value.val(data.attachment_id);
-          status.fadeIn().text('Image uploaded').fadeOut(2000);
-        } else {
-          status.fadeIn().text(data.message);
-        }
+jQuery(document).ready(function() {
+    if (jQuery('.photoupload').length > 0) {
+      if ( typeof wp !== 'undefined' && wp.media && wp.media.editor) {
+          jQuery(document).on('click', '.photoupload', function(e) {
+              e.preventDefault();
+              var send_attachment_bkp = wp.media.editor.send.attachment;
+              var button = jQuery(this);
+              var set_url_value = jQuery(this).parents('.mulit_desti_row').find('.icon_photo');
+              var set_id_value = jQuery(this).parents('.mulit_desti_row').find('.icon_photo_id');
+              var set_image_preview = jQuery(this).parents('.mulit_desti_row').find('.mtd_icon_preview');
+              wp.media.editor.send.attachment = function(props, attachment) {
+                  set_url_value.val(attachment.url);
+                  set_id_value.val(attachment.id);
+                  var image_build = '<img width="20" src="'+attachment.url+'" alt="photo" />';
+                  set_image_preview.html(image_build);
+                  wp.media.editor.send.attachment = send_attachment_bkp;
+              };
+              wp.media.editor.open(button);
+              return false;
+          });
       }
-    });
-
-  });
-
-
-
+    }
 });
