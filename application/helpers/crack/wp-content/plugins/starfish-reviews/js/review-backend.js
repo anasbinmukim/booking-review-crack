@@ -104,7 +104,7 @@ jQuery(document).ready(function($) {
      }
      if(option_val == 'Uploadimage'){
        $(this).parents('.mulit_desti_row').find('.photo_upload_area').show();
-       $(this).parents('.mulit_desti_row').find('.color-field').prop('disabled', true);
+       $(this).parents('.mulit_desti_row').find('.color-field-icon').prop('disabled', true);
      }else{
        $(this).parents('.mulit_desti_row').find('.photo_upload_area').hide();
      }

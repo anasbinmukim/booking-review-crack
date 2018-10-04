@@ -127,7 +127,12 @@ function srm_starfish_review_show_order_column($name){
 		case 'destination':
 			if(get_post_meta($post->ID, '_srm_desti_name', true) != ''){
 					$desti_name = esc_html(get_post_meta($post->ID, '_srm_desti_name', true));
-					echo $desti_name;
+					$desti_url = esc_url(get_post_meta($post->ID, '_srm_destination_url', true));
+					echo '<span title="'.$desti_url.'">'.$desti_name.'</span>';
+					if(isset($_GET['show_destination_url'])){
+						echo '<br />';
+						echo $desti_url;
+					}
 			}
 			break;
    default:
@@ -234,20 +239,13 @@ function srm_starfish_review_add_top_review_graph() {
 							$feedback = get_post_meta($review_id, '_srm_feedback', true);
 							if($feedback == 'Yes'){
 									$positive_review += 1;
-
-									if(get_post_meta($review_id, '_srm_desti_type', true) == 'single'){
-											$destination_url = get_post_meta($review_id, '_srm_destination_url', true);
-											$total_destination[] = starfish_get_name_from_destination_url($destination_url);
-									}
-									if(get_post_meta($review_id, '_srm_desti_type', true) == 'multiple'){
-											$total_destination[] = get_post_meta($review_id, '_srm_desti_name', true);
-									}
-
-
 							}else{
 								$negative_review += 1;
 							}
 							$total_review += 1;
+
+							$destination_url = get_post_meta($review_id, '_srm_destination_url', true);
+							$total_destination[] = starfish_get_name_from_destination_url($destination_url);
 
 						}
 						wp_reset_postdata();
@@ -327,7 +325,8 @@ function srm_starfish_review_add_top_review_graph() {
 										<?php
 										foreach ($total_destination_count as $desti_name => $desti_count) {
 											// code...
-											echo "['".$desti_name."', $desti_count],";
+											$desti_name_set = $desti_name.' ('.$desti_count.')';
+											echo "['".$desti_name_set."', $desti_count],";
 										}
 										?>
 									]);
@@ -475,3 +474,13 @@ function srm_admin_sort_reviews_by_funnel( $query ) {
   }
 }
 add_filter( 'parse_query', 'srm_admin_sort_reviews_by_funnel' );
+
+/* Added this function. */
+function starfish_settings_api_init($input) {
+		if (get_option('starfish_flush_rules') == 'yes'){
+			update_option('starfish_flush_rules', 'no');
+			flush_rewrite_rules();
+		}
+}
+
+add_action( 'admin_init', 'starfish_settings_api_init' );

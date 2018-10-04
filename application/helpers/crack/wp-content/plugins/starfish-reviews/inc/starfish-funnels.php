@@ -47,6 +47,47 @@ function srm_register_funnel_cpt() {
 	register_post_type( 'funnel', $args );
 }
 
+/**
+* Reorder Funnel admin column
+*/
+function srm_manage_starfish_funnel_posts_columns($post_columns) {
+    $post_columns = array(
+        'cb' => $post_columns['cb'],
+        'title' => esc_html__( 'Funnel', 'starfish' ),
+				'desti_type' => esc_html__( 'Destination', 'starfish' ),
+				'date' => esc_html__( 'Date', 'starfish' )
+        );
+    return $post_columns;
+}
+add_action('manage_funnel_posts_columns', 'srm_manage_starfish_funnel_posts_columns');
+
+/**
+* add order column to admin listing screen for reviews
+*/
+function srm_add_new_starfish_funnel_column($funnel_columns) {
+	$funnel_columns['desti_type'] = esc_html__( 'Destination', 'starfish' );
+  return $funnel_columns;
+}
+add_action('manage_edit-funnel_columns', 'srm_add_new_starfish_funnel_column');
+
+
+/**
+* show custom order column values
+*/
+function srm_starfish_funnel_show_order_column($name){
+  global $post;
+
+  switch ($name) {
+		case 'desti_type':
+			$funnel_type = get_post_meta($post->ID, '_srm_no_destination', true);
+			echo esc_html($funnel_type);
+			break;
+   default:
+      break;
+   }
+}
+add_action('manage_funnel_posts_custom_column','srm_starfish_funnel_show_order_column');
+
 
 /**
  * Add meta box
@@ -263,8 +304,8 @@ function srm_yes_result_build_meta_box( $post ){
 								?>
 								<td class="mtd_icon_preview"><?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id); ?></td>
 								<td class="td-color-field">
-									 <input <?php echo $color_field_disabled; ?> type="text" class="medium-text color-field" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
-									 <input <?php echo $color_field_disabled; ?> type="text" class="medium-text color-field" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
+									 <input <?php echo $color_field_disabled; ?> type="text" class="medium-text color-field color-field-icon" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
+									 <input type="text" class="medium-text color-field color-field-iconbg" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
 								</td>
 								<td><input type="text" class="medium-text" name="srm_desti_name[]" value="<?php echo $srm_desti_name; ?>" placeholder="<?php echo esc_html__( 'Name', 'starfish' ); ?>"></td>
 								<td><input type="text" class="medium-text" name="srm_desti_url[]" value="<?php echo $srm_desti_url; ?>" placeholder="<?php echo esc_html__( 'Review URL', 'starfish' ); ?>"></td>
@@ -311,8 +352,8 @@ function srm_yes_result_build_meta_box( $post ){
 					</td>
 					<td class="mtd_icon_preview"></td>
 					<td class="td-color-field">
-						 <input type="text" class="medium-text color-field" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
-						 <input type="text" class="medium-text color-field" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
+						 <input type="text" class="medium-text color-field color-field-icon" name="srm_desti_color[]" value="<?php echo $srm_desti_color; ?>" placeholder="<?php echo esc_html__( '#000000', 'starfish' ); ?>">
+						 <input type="text" class="medium-text color-field color-field-iconbg" name="srm_desti_bg_color[]" value="<?php echo $srm_desti_bg_color; ?>" placeholder="<?php echo esc_html__( '#ffffff', 'starfish' ); ?>">
 					</td>
 					<td><input type="text" class="medium-text" name="srm_desti_name[]" value="<?php echo $srm_desti_name; ?>" placeholder="<?php echo esc_html__( 'Name', 'starfish' ); ?>"></td>
 					<td><input type="text" class="medium-text" name="srm_desti_url[]" value="<?php echo $srm_desti_url; ?>" placeholder="<?php echo esc_html__( 'Review URL', 'starfish' ); ?>"></td>

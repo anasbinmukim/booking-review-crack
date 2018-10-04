@@ -221,7 +221,7 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 							?>
 							<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="srm-leave-public-review" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
 							<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?>
-							</a></li>
+							</a><?php if($srm_desti_name != ''){ ?><span class="destination-name"><?php echo esc_html($srm_desti_name); ?></span><?php } ?></li>
 						<?php } ?>
 					</ul>
 					<?php } ?>

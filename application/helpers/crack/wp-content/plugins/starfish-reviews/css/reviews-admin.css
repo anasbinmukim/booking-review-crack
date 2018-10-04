@@ -10,8 +10,11 @@ table td.nopadding{ padding: 0; }
 table.mulit_desti_row_section { margin-bottom: 20px; }
 .multi_destination table tr td{ border-top: 1px solid #dadada; padding-top: 10px; }
 .multi_destination table td{ padding: 0; }
-.multi_destination .reorder-icon{ width: 20px; }
-.multi_destination .reorder-icon .faicon-reorder{ color: #666; }
+.multi_destination .reorder-icon{ width: 20px;}
+.multi_destination .reorder-icon .faicon-reorder{ color: #666; opacity: 0;}
+.multi_destination .mulit_desti_row:hover{ cursor: grab; }
+.multi_destination .mulit_desti_row.ul-shortable-helper{ cursor: grabbing;}
+.multi_destination .mulit_desti_row:hover .reorder-icon .faicon-reorder{ opacity: 1; }
 .multi_destination input.medium-text.color-field:disabled { background-color: #dadada; }
 .mr_add_remove span{ cursor: pointer; }
 .btn-multi-desti-add span{color: #7ed026;}
