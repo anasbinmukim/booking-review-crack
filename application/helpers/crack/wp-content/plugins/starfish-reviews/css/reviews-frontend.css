@@ -29,8 +29,8 @@
 .srm-public-review-button a:hover{ color: #fff; }
 .review-multiple-destination { margin: 20px 20px; }
 .multi-desti-buttons{ display: inline; margin: 0; }
-.multi-desti-buttons li{ display: inline-grid; max-width: 100px; margin-bottom: 10px; }
-.multi-desti-buttons li .destination-name{ padding: 5px 10px; }
+.multi-desti-buttons li{ display: inline-grid; width: 80px; margin-bottom: 10px; }
+.multi-desti-buttons li .destination-name{ padding: 5px 10px; word-break: break-all; }
 .multi-desti-buttons li a{ padding: 10px; margin: 5px auto; display: inline-block; background: #dadada; color: #666; width: 70px; border-radius: 5px; }
 .multi-desti-buttons li a .faicon_preview{ font-size: 40px; }
 .multi-desti-buttons li a img{ max-width: 40px; max-height: 40px; vertical-align: bottom; display: inline; }
@@ -48,6 +48,14 @@
 .multi-desti-buttons .wordpress a:hover{ background-color: #21759b; }
 .multi-desti-buttons .etsy a:hover{ background-color: #d5641c; }
 .multi-desti-buttons .youtube a:hover{ background-color: #ff0000; }
+.multi-desti-buttons .uploadimage a img{
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+.multi-desti-buttons .uploadimage a:hover img{
+  filter: none;
+  -webkit-filter: grayscale(0%);
+}
 @media screen and (max-width: 550px) {
   .srm-review-form .srm_form .yes-no-checked .faicon{ font-size: 80px;}
 }

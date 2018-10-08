@@ -110,6 +110,7 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 			<div class="review-multiple-destination">
 				<?php if(isset($srm_multi_desti) && is_array($srm_multi_desti) && (count($srm_multi_desti) > 0)){ ?>
 					<ul class="multi-desti-buttons">
+					<?php $desti_count = 1; ?>
 					<?php foreach ($srm_multi_desti as $key => $multi_desti) { ?>
 							<?php
 								$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
@@ -119,6 +120,8 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 								$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
 								$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
 
+								$desti_icon_class = 'desti-icon-'.$desti_count;
+
 								$icon_class = '';
 								if($srm_destination_icon != ''){
 									$icon_class = sanitize_title_with_dashes($srm_destination_icon);
@@ -126,12 +129,16 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 								if($srm_desti_color != ''){
 									$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{color: '.$srm_desti_color.'}';
 								}
-								if($srm_desti_bg_color != ''){
+								if(($srm_desti_bg_color != '') && ($icon_class != 'uploadimage')){
 									$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{background: '.$srm_desti_bg_color.'}';
 								}
+								if($icon_class == 'uploadimage'){
+									$output_icon_style .= '.multi-desti-buttons .'.$desti_icon_class.' a{background: '.$srm_desti_bg_color.'}';
+								}
 							?>
-							<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="multi-desti-submit" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
+							<li class="<?php echo $desti_icon_class; ?> <?php echo $icon_class; ?>"><a href="javascript:void(0)" class="multi-desti-submit" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
 							<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?></a><?php if($srm_desti_name != ''){ ?><span class="destination-name"><?php echo esc_html($srm_desti_name); ?></span><?php } ?></li>
+							<?php $desti_count++; ?>
 						<?php } ?>
 					</ul>
 					<?php
@@ -205,6 +212,7 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 			<div class="review-multiple-destination">
 				<?php if(isset($srm_multi_desti) && is_array($srm_multi_desti) && (count($srm_multi_desti) > 0)){ ?>
 					<ul class="multi-desti-buttons">
+					<?php $desti_count = 1; ?>
 					<?php foreach ($srm_multi_desti as $key => $multi_desti) { ?>
 							<?php
 								$srm_destination_icon = esc_html( $multi_desti['desti_icon'] );
@@ -214,14 +222,26 @@ if(isset($_GET['id'])){ $tracking_id = esc_html($_GET['id']); }
 								$srm_desti_name = esc_html( $multi_desti['srm_desti_name'] );
 								$srm_desti_url = esc_url( $multi_desti['srm_desti_url'] );
 
+								$desti_icon_class = 'desti-icon-'.$desti_count;
+
 								$icon_class = '';
 								if($srm_destination_icon != ''){
 									$icon_class = sanitize_title_with_dashes($srm_destination_icon);
 								}
+								if($srm_desti_color != ''){
+									$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{color: '.$srm_desti_color.'}';
+								}
+								if(($srm_desti_bg_color != '') && ($icon_class != 'uploadimage')){
+									$output_icon_style .= '.multi-desti-buttons .'.$icon_class.' a{background: '.$srm_desti_bg_color.'}';
+								}
+								if($icon_class == 'uploadimage'){
+									$output_icon_style .= '.multi-desti-buttons .'.$desti_icon_class.' a{background: '.$srm_desti_bg_color.'}';
+								}
 							?>
-							<li class="<?php echo $icon_class; ?>"><a href="javascript:void(0)" class="srm-leave-public-review" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
+							<li class="<?php echo $desti_icon_class; ?> <?php echo $icon_class; ?>"><a href="javascript:void(0)" class="srm-leave-public-review" data-icon="<?php echo esc_attr($srm_destination_icon); ?>"  data-photo_id="<?php echo $icon_photo_id; ?>"  data-desti_name="<?php echo esc_attr($srm_desti_name); ?>" data-desti_url="<?php echo $srm_desti_url; ?>">
 							<?php echo starfish_get_destination_icon($srm_destination_icon, $icon_photo_id, 'frontend'); ?>
 							</a><?php if($srm_desti_name != ''){ ?><span class="destination-name"><?php echo esc_html($srm_desti_name); ?></span><?php } ?></li>
+							<?php $desti_count++; ?>
 						<?php } ?>
 					</ul>
 					<?php } ?>

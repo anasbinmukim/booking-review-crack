@@ -12,7 +12,18 @@ table.mulit_desti_row_section { margin-bottom: 20px; }
 .multi_destination table td{ padding: 0; }
 .multi_destination .reorder-icon{ width: 20px;}
 .multi_destination .reorder-icon .faicon-reorder{ color: #666; opacity: 0;}
-.multi_destination .mulit_desti_row:hover{ cursor: grab; }
+.multi_destination .mulit_desti_row {
+  cursor: move; /* fallback: no `url()` support or images disabled */
+  cursor: -webkit-grab; /* Chrome 1-21, Safari 4+ */
+  cursor:    -moz-grab; /* Firefox 1.5-26 */
+  cursor:         grab; /* W3C standards syntax, should come least */
+}
+ /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.multi_destination .mulit_desti_row:active {
+    cursor: -webkit-grabbing;
+    cursor:    -moz-grabbing;
+    cursor:         grabbing;
+}
 .multi_destination .mulit_desti_row.ul-shortable-helper{ cursor: grabbing;}
 .multi_destination .mulit_desti_row:hover .reorder-icon .faicon-reorder{ opacity: 1; }
 .multi_destination input.medium-text.color-field:disabled { background-color: #dadada; }
