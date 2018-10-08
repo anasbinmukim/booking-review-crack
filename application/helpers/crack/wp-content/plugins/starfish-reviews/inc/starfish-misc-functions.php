@@ -63,12 +63,21 @@ function starfish_get_destination_icon($icon_type, $photo_id = '', $display = 'a
 
 function starfish_get_name_from_destination_url($url){
   $destination_domain = '';
+  $destination_domain_name = '';
 
   if($url_data = parse_url($url)){
     if(isset($url_data['host'])){
         $destination_domain = str_replace('www.', '', $url_data['host']);
+
+        $domain_parts = explode('.', $destination_domain);
+
+        if(isset($domain_parts[0])){
+          $destination_domain_name = ucwords($domain_parts[0]);
+        }
     }
   }
+
+  return $destination_domain_name;
 
   switch ($destination_domain) {
     case "google.com":
