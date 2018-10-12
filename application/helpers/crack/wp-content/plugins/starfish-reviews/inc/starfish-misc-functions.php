@@ -60,6 +60,17 @@ function starfish_get_destination_icon($icon_type, $photo_id = '', $display = 'a
 
 }
 
+function starfish_get_domain($host){
+  $review_host = strtolower(trim($host));
+  $count = substr_count($review_host, '.');
+  if($count === 2){
+    if(strlen(explode('.', $review_host)[1]) > 3) $review_host = explode('.', $review_host, 2)[1];
+  } else if($count > 2){
+    $review_host = starfish_get_domain(explode('.', $review_host, 2)[1]);
+  }
+  return $review_host;
+}
+
 
 function starfish_get_name_from_destination_url($url){
   $destination_domain = '';
@@ -67,14 +78,13 @@ function starfish_get_name_from_destination_url($url){
 
   if($url_data = parse_url($url)){
     if(isset($url_data['host'])){
-        $destination_domain = str_replace('www.', '', $url_data['host']);
-
-        $domain_parts = explode('.', $destination_domain);
-
-        if(isset($domain_parts[0])){
-          $destination_domain_name = ucwords($domain_parts[0]);
-        }
+        $destination_domain_name = starfish_get_domain($url_data['host']);
+        $destination_domain_name = ucwords($destination_domain_name);
     }
+  }
+
+  if($destination_domain_name == ''){
+    $destination_domain_name = esc_html__( 'Others', 'starfish' );
   }
 
   return $destination_domain_name;

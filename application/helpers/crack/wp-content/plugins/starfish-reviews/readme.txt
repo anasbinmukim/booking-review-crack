@@ -36,6 +36,10 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 == Changelog ==
 
+= 1.7.1 – 2018-10-11 =
+* Fixes
+  * Changed how the plugin parses domains for the destinations chart to better accommodate various subdomains.
+
 = 1.7 – 2018-09-08 =
 * Enhancements
     * Added column on Funnels list page to indicate whether funnels are single or multi destination for easy reference.
@@ -45,7 +49,7 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
     * Custom destination icons now use the "insert media" modal from WordPress core. Upload to the media library, or select an image from there.
     * Link to funnel with negative/positive option pre-selected using "?feedback=p" for positive and "?feedback=n" for negative. Allows you to link directly from an email, etc. Eliminates a click/step. Works with "?id=" as well.
     * Added hover effect to custom destination buttons.
-    
+
 
 * Fixes
     * Added destination names back on negative review destinations (when "Disable review gating" is turned on).
