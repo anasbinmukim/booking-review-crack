@@ -4,7 +4,7 @@ Donate link: https://starfish.reviews
 Tags: reputation management,reviews,ratings,5-star reviews,
 Requires at least: 4.8
 Tested up to: 5.0
-Stable tag: 1.5.1
+Stable tag: 1.7.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -35,6 +35,11 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 
 == Changelog ==
+
+= 1.7.2 – 2018-10-24 =
+* Fixes
+  * Multiple destination icon label adjustment.
+
 
 = 1.7.1 – 2018-10-11 =
 * Fixes
