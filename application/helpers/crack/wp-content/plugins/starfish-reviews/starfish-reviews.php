@@ -4,7 +4,7 @@ Plugin Name: Starfish Reviews
 Plugin URI: https://starfish.reviews/
 Description: Encourage your customers to leave 5-star reviews on Google, Facebook, Yellow Pages, and more. See responses, monitor your reputation rating, and create multiple funnels with Starfish, the #1 reputation management plugin for WordPress!
 Author: Starfish
-Version: 1.7.2
+Version: 1.7.3
 Author URI: https://starfish.reviews/
 Copyright: © 2017 - 2018 Starfish.
 License:     GPL2
@@ -62,7 +62,7 @@ class StarfishRM{
 	 * Constructor
 	 */
 	public function __construct() {
-		define( 'SRM_VERSION', '1.7.1' );
+		define( 'SRM_VERSION', '1.7.3' );
 		//WooCommerce variation product id for business subscription
 		define( 'SRM_BUSINESS_PLAN', 'business' );
 		//WooCommerce variation product id for web master subscription

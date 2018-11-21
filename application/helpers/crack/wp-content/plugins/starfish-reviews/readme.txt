@@ -36,6 +36,11 @@ We believe in LEAN Startup method. So if you ask, and so do a number of others o
 
 == Changelog ==
 
+= 1.7.3 – 2018-11-21 =
+* Fixes
+  * Conflict with All-in-One SEO Pack Pro
+
+
 = 1.7.2 – 2018-10-24 =
 * Fixes
   * Multiple destination icon label adjustment.
