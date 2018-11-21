@@ -212,7 +212,7 @@ class StarfishRM{
 			'funnel' => '',
 		), $atts));
 		ob_start();
-		require_once('inc/starfish-shortcode.php');
+		require('inc/starfish-shortcode.php');
 		$content = ob_get_clean();
 		return $content;
 	}
